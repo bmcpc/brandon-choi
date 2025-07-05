@@ -1,6 +1,6 @@
-# Brandon Choi Website
+# Brandon Choi
 
-A modern React + Vite website featuring an animated typewriter effect with solarized color scheme.
+A personal website.
 
 ## Getting Started
 
