@@ -8,8 +8,6 @@
   min-height: 100vh;
   width: 100%;
   background: #000000;
-  /* Optional: Add a subtle gradient for depth while keeping it very dark */
-  background: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
 }
 
 .main-title {
