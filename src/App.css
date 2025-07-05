@@ -10,12 +10,14 @@
 }
 
 .app h1 {
+  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 3rem;
   font-weight: 700;
   color: #333;
   margin: 0 0 1rem 0;
   text-align: center;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .tech-icons {
@@ -50,6 +52,7 @@
   .app h1 {
     font-size: 2rem;
     margin: 0 0 0.75rem 0;
+    letter-spacing: -0.01em;
   }
   
   .tech-icons {
@@ -72,6 +75,7 @@
   .app h1 {
     font-size: 1.5rem;
     margin: 0 0 0.5rem 0;
+    letter-spacing: 0;
   }
   
   .tech-icons {
@@ -89,6 +93,7 @@
 @media (min-width: 769px) {
   .app h1 {
     font-size: 3.5rem;
+    letter-spacing: -0.03em;
   }
   
   .logo {
