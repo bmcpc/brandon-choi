@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&display=swap');
+
 .app {
   display: flex;
   flex-direction: column;
@@ -8,15 +10,23 @@
   background: linear-gradient(135deg, #073642 0%, #002b36 100%);
 }
 
-.app h1 {
-  font-size: 4.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin: 0 0 1.5rem 0;
+.main-title {
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: #fdf6e3;
+  margin: 0 0 2rem 0;
   text-align: center;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  letter-spacing: -0.02em;
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  text-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  letter-spacing: -0.03em;
+  font-family: 'Playfair Display', serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+.main-title.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .typewriter {
@@ -30,22 +40,6 @@
   justify-content: center;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   margin-bottom: 1rem;
-}
-
-.cursor {
-  font-weight: 100;
-  color: #fdf6e3;
-  animation: blink 1s infinite;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
 }
 
 .tech-icons {
@@ -88,9 +82,9 @@
 
 /* Responsive design for mobile devices */
 @media (max-width: 768px) {
-  .app h1 {
-    font-size: 3.5rem;
-    margin: 0 0 1rem 0;
+  .main-title {
+    font-size: 4rem;
+    margin: 0 0 1.5rem 0;
   }
   
   .typewriter {
@@ -104,9 +98,9 @@
 }
 
 @media (max-width: 480px) {
-  .app h1 {
-    font-size: 2.75rem;
-    margin: 0 0 0.75rem 0;
+  .main-title {
+    font-size: 3rem;
+    margin: 0 0 1rem 0;
   }
   
   .typewriter {
