@@ -5,6 +5,8 @@ A modern React + Vite website featuring an animated typewriter effect that cycle
 ## Features
 
 - **Typewriter Animation**: Dynamic text animation that cycles through multiple strings
+- **Smart Diffing**: Intelligent transitions that only change differing parts between similar strings
+- **Solarized Color Scheme**: Beautiful off-white text with solarized dark gradient background
 - **Responsive Design**: Centered layout that works on all screen sizes
 - **Interactive Tech Icons**: Hover effects and animations for Vite and React logos
 - **Automatic Deployment**: GitHub Actions integration for seamless deployment
