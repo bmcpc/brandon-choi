@@ -4,21 +4,41 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for mobile */
   width: 100%;
-  padding: 1rem;
-  box-sizing: border-box;
 }
 
 .app h1 {
-  font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
   font-size: 3rem;
   font-weight: 700;
   color: #333;
   margin: 0 0 1rem 0;
   text-align: center;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+}
+
+.typewriter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  font-family: 'Courier New', monospace;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor {
+  font-weight: 100;
+  color: #333;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }
 
 .tech-icons {
