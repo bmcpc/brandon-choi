@@ -1,2 +1,2 @@
-# BC Resume
+# BCWebsite
 - A website displaying my resume.
