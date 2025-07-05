@@ -17,7 +17,7 @@
 }
 
 .experience-sidebar {
-  flex: 0 0 30%;
+  flex: 0 0 120px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -26,6 +26,7 @@
 .experience-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding: 1rem;
   border-radius: 8px;
@@ -37,14 +38,20 @@
 
 .experience-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: scale(1.05);
+  transform: scale(1.1);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 .experience-item.active {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.15);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.experience-item.active .experience-icon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.3));
 }
 
 .experience-icon {
@@ -56,14 +63,11 @@
   flex-shrink: 0;
   color: #ffffff;
   font-size: 1.5rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .experience-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  display: none;
 }
 
 .experience-content {
@@ -154,11 +158,19 @@
   }
 
   .experience-item:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 
   .experience-item.active {
-    transform: scale(1.01);
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+  }
+
+  .experience-item.active .experience-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 1px 4px rgba(255, 255, 255, 0.3));
   }
 
   .experience-icon {
@@ -223,6 +235,18 @@
   .experience-item {
     min-width: 50px;
     padding: 0.5rem;
+  }
+
+  .experience-item.active {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+  }
+
+  .experience-item.active .experience-icon {
+    transform: scale(1.05);
+    filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.3));
   }
 
   .experience-icon {
