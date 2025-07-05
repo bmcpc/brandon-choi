@@ -9,24 +9,34 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [transitionData, setTransitionData] = useState(null)
 
-  // Helper function to find common prefix (character-based)
-  const findCommonPrefix = (str1, str2) => {
+  // Helper function to split text into words
+  const getWords = (text) => {
+    return text.split(' ').filter(word => word.length > 0)
+  }
+
+  // Helper function to find common word prefix
+  const findCommonWordPrefix = (words1, words2) => {
     let i = 0
-    while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+    while (i < words1.length && i < words2.length && words1[i] === words2[i]) {
       i++
     }
     return i
   }
 
-  // Helper function to find common suffix (character-based)
-  const findCommonSuffix = (str1, str2, prefixLength) => {
+  // Helper function to find common word suffix
+  const findCommonWordSuffix = (words1, words2, prefixLength) => {
     let i = 0
-    const maxSuffixLength = Math.min(str1.length - prefixLength, str2.length - prefixLength)
+    const maxSuffixLength = Math.min(words1.length - prefixLength, words2.length - prefixLength)
     while (i < maxSuffixLength && 
-           str1[str1.length - 1 - i] === str2[str2.length - 1 - i]) {
+           words1[words1.length - 1 - i] === words2[words2.length - 1 - i]) {
       i++
     }
     return i
+  }
+
+  // Helper function to join words with proper spacing
+  const joinWords = (words) => {
+    return words.join(' ')
   }
 
   useEffect(() => {
@@ -37,22 +47,31 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
     
     const timer = setTimeout(() => {
       if (isPaused) {
-        // Start transition to next string
-        const prefixLength = findCommonPrefix(currentText, nextString)
-        const suffixLength = findCommonSuffix(currentText, nextString, prefixLength)
+        // Start transition to next string using word-level analysis
+        const currentWords = getWords(currentText)
+        const nextWords = getWords(nextString)
+        const prefixWordLength = findCommonWordPrefix(currentWords, nextWords)
+        const suffixWordLength = findCommonWordSuffix(currentWords, nextWords, prefixWordLength)
         
-        if (prefixLength > 0 || suffixLength > 0) {
-          // Smart transition - calculate edit positions
-          const deleteStartPos = prefixLength
-          const deleteEndPos = currentText.length - suffixLength
-          const insertText = nextString.substring(prefixLength, nextString.length - suffixLength)
+        if (prefixWordLength > 0 || suffixWordLength > 0) {
+          // Smart transition - only change the differing words
+          const prefixWords = currentWords.slice(0, prefixWordLength)
+          const oldMiddleWords = currentWords.slice(prefixWordLength, currentWords.length - suffixWordLength)
+          const newMiddleWords = nextWords.slice(prefixWordLength, nextWords.length - suffixWordLength)
+          
+          // Calculate positions for character-level editing
+          const prefixText = joinWords(prefixWords) + (prefixWords.length > 0 ? ' ' : '')
+          const oldMiddleText = joinWords(oldMiddleWords)
+          const newMiddleText = joinWords(newMiddleWords)
+          
+          const editStartPos = prefixText.length
+          const editEndPos = prefixText.length + oldMiddleText.length
           
           setIsTransitioning(true)
           setTransitionData({
-            deleteStartPos,
-            deleteEndPos,
-            insertText,
-            targetCursorPos: deleteStartPos,
+            editStartPos,
+            editEndPos,
+            newMiddleText,
             phase: 'movingCursor',
             insertIndex: 0
           })
@@ -65,33 +84,31 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
       }
 
       if (isTransitioning && transitionData) {
-        // Handle smart transition with cursor movement and character-by-character editing
-        const { deleteStartPos, deleteEndPos, insertText, targetCursorPos, phase, insertIndex } = transitionData
+        // Handle smart transition with word logic + character editing
+        const { editStartPos, editEndPos, newMiddleText, phase, insertIndex } = transitionData
         
         if (phase === 'movingCursor') {
           // Move cursor to the edit position
-          if (cursorPosition > targetCursorPos) {
-            // Move cursor left
+          if (cursorPosition > editStartPos) {
             setCursorPosition(cursorPosition - 1)
-          } else if (cursorPosition < targetCursorPos) {
-            // Move cursor right
+          } else if (cursorPosition < editStartPos) {
             setCursorPosition(cursorPosition + 1)
           } else {
-            // Cursor is at target position, start deleting
+            // Cursor is at edit position, start deleting
             setTransitionData({
               ...transitionData,
               phase: 'deleting'
             })
           }
         } else if (phase === 'deleting') {
-          // Delete characters one by one from the cursor position
-          if (currentText.length > deleteStartPos && cursorPosition < deleteEndPos) {
+          // Delete characters one by one in the edit range
+          if (cursorPosition < editEndPos && currentText.length > editStartPos) {
             const newText = currentText.slice(0, cursorPosition) + currentText.slice(cursorPosition + 1)
             setCurrentText(newText)
-            // Update deleteEndPos since text is now shorter
+            // Update editEndPos since text is now shorter
             setTransitionData({
               ...transitionData,
-              deleteEndPos: deleteEndPos - 1
+              editEndPos: editEndPos - 1
             })
           } else {
             // Done deleting, start inserting
@@ -102,8 +119,8 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
           }
         } else if (phase === 'inserting') {
           // Insert characters one by one
-          if (insertIndex < insertText.length) {
-            const charToInsert = insertText[insertIndex]
+          if (insertIndex < newMiddleText.length) {
+            const charToInsert = newMiddleText[insertIndex]
             const newText = currentText.slice(0, cursorPosition) + charToInsert + currentText.slice(cursorPosition)
             setCurrentText(newText)
             setCursorPosition(cursorPosition + 1)
