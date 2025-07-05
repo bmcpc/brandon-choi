@@ -1,7 +1,7 @@
 import './App.css'
 import Title from './components/Title'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from './assets/vite.svg'
 
 function App() {
   return (
