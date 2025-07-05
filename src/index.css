@@ -76,9 +76,6 @@ button:focus-visible {
   
   #root {
     min-height: 100svh; /* Small viewport height */
-    /* Ensure content starts at the top of the visible area */
-    justify-content: center;
-    align-items: center;
   }
   
   h1 {

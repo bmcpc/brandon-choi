@@ -49,9 +49,6 @@
   .app {
     padding: 0.5rem;
     min-height: 100svh; /* Small viewport height for mobile */
-    /* Ensure content is properly centered in visible area */
-    justify-content: center;
-    align-items: center;
   }
   
   .app h1 {
@@ -76,9 +73,6 @@
   .app {
     padding: 0.25rem;
     min-height: 100svh; /* Small viewport height for mobile */
-    /* Ensure content is properly centered in visible area */
-    justify-content: center;
-    align-items: center;
   }
   
   .app h1 {
