@@ -88,10 +88,12 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
         const { editStartPos, editEndPos, newMiddleText, phase, insertIndex } = transitionData
         
         if (phase === 'movingCursor') {
-          // Move cursor to the edit position
+          // Move cursor one character at a time to the edit position
           if (cursorPosition > editStartPos) {
+            // Move cursor left one character at a time
             setCursorPosition(cursorPosition - 1)
           } else if (cursorPosition < editStartPos) {
+            // Move cursor right one character at a time
             setCursorPosition(cursorPosition + 1)
           } else {
             // Cursor is at edit position, start deleting
@@ -101,8 +103,9 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
             })
           }
         } else if (phase === 'deleting') {
-          // Delete characters one by one in the edit range
-          if (cursorPosition < editEndPos && currentText.length > editStartPos) {
+          // Delete characters one by one at the cursor position
+          if (cursorPosition < editEndPos && currentText.length > cursorPosition) {
+            // Delete character at cursor position (cursor stays put)
             const newText = currentText.slice(0, cursorPosition) + currentText.slice(cursorPosition + 1)
             setCurrentText(newText)
             // Update editEndPos since text is now shorter
@@ -110,6 +113,7 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
               ...transitionData,
               editEndPos: editEndPos - 1
             })
+            // Cursor stays at same position - we're deleting the character AT the cursor
           } else {
             // Done deleting, start inserting
             setTransitionData({
@@ -118,11 +122,13 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
             })
           }
         } else if (phase === 'inserting') {
-          // Insert characters one by one
+          // Insert characters one by one at cursor position
           if (insertIndex < newMiddleText.length) {
             const charToInsert = newMiddleText[insertIndex]
+            // Insert character at cursor position
             const newText = currentText.slice(0, cursorPosition) + charToInsert + currentText.slice(cursorPosition)
             setCurrentText(newText)
+            // Move cursor forward after inserting character
             setCursorPosition(cursorPosition + 1)
             setTransitionData({
               ...transitionData,
@@ -158,7 +164,12 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
         }
       }
     }, isPaused ? delayBetweenStrings : 
-        isTransitioning ? (transitionData?.phase === 'deleting' || transitionData?.phase === 'inserting' ? deleteSpeed : speed * 0.5) :
+        isTransitioning ? (
+          transitionData?.phase === 'movingCursor' ? speed * 0.3 :  // Fast cursor movement
+          transitionData?.phase === 'deleting' ? deleteSpeed :       // Normal delete speed
+          transitionData?.phase === 'inserting' ? speed :            // Normal typing speed
+          speed
+        ) :
         isDeleting ? deleteSpeed : speed)
 
     return () => clearTimeout(timer)
