@@ -70,14 +70,18 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
           setIsTransitioning(true)
           setTransitionData({
             editStartPos,
-            editEndPos,
             newMiddleText,
             phase: 'movingCursor',
-            insertIndex: 0
+            insertIndex: 0,
+            targetCursorPos: editEndPos  // Move to END of section being replaced
           })
         } else {
-          // No common parts, use regular deletion
-          setIsDeleting(true)
+          // No common parts, use regular deletion (move to end first)
+          setIsTransitioning(true)
+          setTransitionData({
+            phase: 'movingToEnd',
+            targetString: nextString
+          })
         }
         setIsPaused(false)
         return
@@ -85,37 +89,33 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
 
       if (isTransitioning && transitionData) {
         // Handle smart transition with word logic + character editing
-        const { editStartPos, editEndPos, newMiddleText, phase, insertIndex } = transitionData
+        const { editStartPos, newMiddleText, phase, insertIndex, targetCursorPos } = transitionData
         
         if (phase === 'movingCursor') {
-          // Move cursor one character at a time to the edit position
-          if (cursorPosition > editStartPos) {
+          // Move cursor one character at a time to the target position (end of text being replaced)
+          if (cursorPosition > targetCursorPos) {
             // Move cursor left one character at a time
             setCursorPosition(cursorPosition - 1)
-          } else if (cursorPosition < editStartPos) {
+          } else if (cursorPosition < targetCursorPos) {
             // Move cursor right one character at a time
             setCursorPosition(cursorPosition + 1)
           } else {
-            // Cursor is at edit position, start deleting
+            // Cursor is at target position (end of section), start deleting backwards
             setTransitionData({
               ...transitionData,
               phase: 'deleting'
             })
           }
         } else if (phase === 'deleting') {
-          // Delete characters one by one at the cursor position
-          if (cursorPosition < editEndPos && currentText.length > cursorPosition) {
-            // Delete character at cursor position (cursor stays put)
-            const newText = currentText.slice(0, cursorPosition) + currentText.slice(cursorPosition + 1)
+          // Delete characters one by one backwards from cursor position
+          if (cursorPosition > editStartPos) {
+            // Delete character before cursor (backspace behavior)
+            const newText = currentText.slice(0, cursorPosition - 1) + currentText.slice(cursorPosition)
             setCurrentText(newText)
-            // Update editEndPos since text is now shorter
-            setTransitionData({
-              ...transitionData,
-              editEndPos: editEndPos - 1
-            })
-            // Cursor stays at same position - we're deleting the character AT the cursor
+            // Move cursor back after deleting
+            setCursorPosition(cursorPosition - 1)
           } else {
-            // Done deleting, start inserting
+            // Done deleting, start inserting at current position
             setTransitionData({
               ...transitionData,
               phase: 'inserting'
@@ -140,6 +140,16 @@ const TypeWriter = ({ strings, speed = 100, deleteSpeed = 50, delayBetweenString
             setTransitionData(null)
             setCurrentStringIndex((prevIndex) => (prevIndex + 1) % strings.length)
             setCursorPosition(nextString.length)
+          }
+        } else if (phase === 'movingToEnd') {
+          // Move cursor to the end of current text, then start deleting everything
+          if (cursorPosition < currentText.length) {
+            setCursorPosition(currentText.length)
+          } else {
+            // Cursor is at end, start deleting everything
+            setIsTransitioning(false)
+            setTransitionData(null)
+            setIsDeleting(true)
           }
         }
       } else if (isDeleting) {
