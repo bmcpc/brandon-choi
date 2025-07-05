@@ -14,61 +14,52 @@ function App() {
     "Full Stack Engineer"
   ]
 
-  // Sample data for ExperienceList
+  // Experience data from resume
   const experienceData = [
     {
       id: 1,
-      name: "Full Stack Development",
-      icon: "🚀",
+      name: "Geico",
+      icon: "🏢",
       descriptions: [
-        "Built scalable web applications using React, Node.js, and MongoDB",
-        "Implemented RESTful APIs and GraphQL endpoints",
-        "Deployed applications using Docker and AWS services",
-        "Collaborated with cross-functional teams in Agile environment"
+        "Led technical debt reduction to enhance scalability and reliability by developing a re-usable Message Broker package (NServiceBus replacement) and re-architecting usage of Azure Service Bus and Kubernetes for efficient resource usage",
+        "Contributed rapidly to the development of new features for the Rescoring platform using C#/.NET 8, Redis, SQL Server, Kubernetes, while improving scalability and performance for high-volume use"
       ]
     },
     {
       id: 2,
-      name: "Backend Engineering",
-      icon: "⚙️",
+      name: "Glidewell Dental Labs",
+      icon: "🦷",
       descriptions: [
-        "Designed and maintained microservices architecture",
-        "Optimized database queries and improved performance by 40%",
-        "Implemented automated testing and CI/CD pipelines",
-        "Built real-time features using WebSocket and Server-Sent Events"
+        "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in AWS (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
+        "Migrated order auto-printing service from legacy monolith to event-driven serverless design using AWS SNS and Lambda in NodeJS and TypeScript"
       ]
     },
     {
       id: 3,
-      name: "Cloud Architecture",
-      icon: "☁️",
+      name: "Happy Money",
+      icon: "💰",
       descriptions: [
-        "Architected and deployed cloud-native solutions on AWS",
-        "Implemented Infrastructure as Code using Terraform",
-        "Set up monitoring and alerting systems with CloudWatch",
-        "Managed containerized applications with ECS and Lambda functions"
+        "Implemented API features for Java Spring Boot event-driven (Kafka) microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
       ]
     },
     {
       id: 4,
-      name: "Data Engineering",
-      icon: "📊",
+      name: "Amazon (AWS, Luna)",
+      icon: "�",
       descriptions: [
-        "Built ETL pipelines processing millions of records daily",
-        "Implemented data warehousing solutions using Snowflake",
-        "Created real-time analytics dashboards with D3.js",
-        "Optimized data processing workflows reducing costs by 30%"
+        "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
+        "Designed automation smoke testing of games utilizing AWS tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
+        "Maintained and managed console platform (website) for other System Manager tool assets via internal server platform in React w/ Typescript and Java, deployed in AWS",
+        "Led region build effort for MXP and CPT of Systems Manager by preparing resources and assets via internal tooling, testing, and identifying pain points for automation"
       ]
     },
     {
       id: 5,
-      name: "Mobile Development",
-      icon: "📱",
+      name: "iHerb",
+      icon: "🌿",
       descriptions: [
-        "Developed cross-platform mobile apps using React Native",
-        "Implemented offline-first architecture with Redux Persist",
-        "Integrated push notifications and deep linking",
-        "Published apps to both iOS App Store and Google Play Store"
+        "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, Entity Framework, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
+        "Improved Inventory HTTP API to single millisecond response times (50% faster) utilizing CQRS pattern and caching"
       ]
     }
   ]
