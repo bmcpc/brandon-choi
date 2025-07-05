@@ -7,9 +7,10 @@ import viteLogo from './assets/vite.svg'
 function App() {
   const typewriterStrings = [
     "Brandon Choi",
+    "Software Engineer",
+    "Backend Engineer",
     "React Developer",
-    "Full Stack Engineer",
-    "Web Developer"
+    "Full Stack Engineer"
   ]
 
   return (

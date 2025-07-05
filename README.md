@@ -38,16 +38,30 @@ The website will be available at `http://localhost:5173`
 ## Components
 
 ### TypeWriter Component
-The `TypeWriter` component creates a typing animation that cycles through an array of strings. It supports:
-- Configurable typing speed
-- Configurable deletion speed
-- Configurable delay between strings
-- Blinking cursor animation
+The `TypeWriter` component creates a typing animation that cycles through an array of strings. It features:
+- **Smart Diffing**: When transitioning between similar strings, only changes the differing parts
+- **Configurable typing speed**: Control how fast characters are typed
+- **Configurable deletion speed**: Control how fast characters are deleted
+- **Configurable delay between strings**: Control pause time between transitions
+- **Blinking cursor animation**: Realistic cursor blinking effect
+
+**Smart Diffing Example:**
+- When transitioning from "Software Engineer" to "Backend Engineer"
+- Only "Software" gets deleted and replaced with "Backend"
+- The common " Engineer" part remains unchanged
+- This creates smoother, more intelligent transitions
+
+**Current Strings:**
+- "Brandon Choi"
+- "Software Engineer" 
+- "Backend Engineer"
+- "React Developer"
+- "Full Stack Engineer"
 
 **Usage:**
 ```jsx
 <TypeWriter 
-  strings={["Brandon Choi", "React Developer", "Full Stack Engineer"]} 
+  strings={["Brandon Choi", "Software Engineer", "Backend Engineer"]} 
   speed={100} 
   deleteSpeed={50} 
   delayBetweenStrings={1500} 
