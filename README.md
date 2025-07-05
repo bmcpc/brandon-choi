@@ -12,8 +12,8 @@ A simple React + Vite website displaying "Brandon Choi" centered on the page.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/bmcpc/BCWebsite.git
+cd BCWebsite
 ```
 
 2. Install dependencies:
@@ -30,31 +30,38 @@ The website will be available at `http://localhost:5173`
 
 ## Deployment to GitHub Pages
 
-1. Push your code to GitHub
-2. Run the deployment command:
+This project automatically deploys to GitHub Pages using GitHub Actions.
+
+### Automatic Deployment
+- Every push to the `master` branch triggers the deployment workflow
+- GitHub Actions will automatically build and deploy the site
+- No manual deployment commands needed!
+
+### Setup GitHub Pages (One-time setup)
+1. Go to your repository on GitHub
+2. Navigate to **Settings** > **Pages**
+3. Under **Source**, select **GitHub Actions**
+4. The site will be available at: `https://bmcpc.github.io/BCWebsite/`
+
+### Manual Build (for testing)
 ```bash
-npm run deploy
+npm run build
 ```
-
-3. Enable GitHub Pages in your repository settings:
-   - Go to your repository on GitHub
-   - Navigate to Settings > Pages
-   - Select "Deploy from a branch"
-   - Choose "gh-pages" branch
-   - Click Save
-
-Your website will be available at: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
 
 ## Build Commands
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
-- `npm run deploy` - Deploy to GitHub Pages
 
 ## Tech Stack
 
-- React
-- Vite
+- React 19
+- Vite 7
 - CSS3
+- GitHub Actions
 - GitHub Pages
+
+## Deployment Status
+
+The deployment status can be monitored in the **Actions** tab of the GitHub repository.
