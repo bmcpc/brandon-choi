@@ -6,7 +6,6 @@ import viteLogo from './assets/vite.svg'
 
 function App() {
   const typewriterStrings = [
-    "Brandon Choi",
     "Software Engineer",
     "Backend Engineer",
     "React Developer",
@@ -18,7 +17,10 @@ function App() {
       {/* Title component dynamically sets the document title */}
       <Title title="Brandon Choi" />
       
-      {/* TypeWriter component with cycling strings */}
+      {/* Main static title */}
+      <h1>Brandon Choi</h1>
+      
+      {/* TypeWriter component with cycling roles */}
       <TypeWriter 
         strings={typewriterStrings} 
         speed={100} 
