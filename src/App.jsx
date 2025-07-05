@@ -87,8 +87,18 @@ function App() {
       />
       
       <div className="tech-icons">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-        <img src={reactLogo} className="logo react" alt="React logo" />
+        <img 
+          src={viteLogo} 
+          className="logo clickable" 
+          alt="Vite" 
+          onClick={() => window.open('https://vitejs.dev/', '_blank')}
+        />
+        <img 
+          src={reactLogo} 
+          className="logo react clickable" 
+          alt="React" 
+          onClick={() => window.open('https://reactjs.org/', '_blank')}
+        />
       </div>
 
       <ExperienceList items={experienceData} />
