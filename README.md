@@ -12,8 +12,8 @@ A simple React + Vite website displaying "Brandon Choi" centered on the page.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/bmcpc/BCWebsite.git
-cd BCWebsite
+git clone https://github.com/bmcpc/brandon-choi.git
+cd brandon-choi
 ```
 
 2. Install dependencies:
@@ -41,7 +41,7 @@ This project automatically deploys to GitHub Pages using GitHub Actions.
 1. Go to your repository on GitHub
 2. Navigate to **Settings** > **Pages**
 3. Under **Source**, select **GitHub Actions**
-4. The site will be available at: `https://bmcpc.github.io/BCWebsite/`
+4. The site will be available at: `https://bmcpc.github.io/brandon-choi/`
 
 ### Manual Build (for testing)
 ```bash
