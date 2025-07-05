@@ -53,8 +53,12 @@ The `TypeWriter` component creates a typing animation that cycles through an arr
 - The common " Engineer" part remains unchanged
 - This creates smoother, more intelligent transitions
 
+**Current Implementation:**
+- **Prominent Static Title**: Large "Brandon Choi" title always visible at the top
+- **Dynamic Role Display**: Typewriter effect cycles through professional roles below the title
+- **Clear Visual Hierarchy**: Title is larger (4.5rem) than typewriter text (2.5rem)
+
 **Current Strings:**
-- "Brandon Choi"
 - "Software Engineer" 
 - "Backend Engineer"
 - "React Developer"
@@ -62,8 +66,9 @@ The `TypeWriter` component creates a typing animation that cycles through an arr
 
 **Usage:**
 ```jsx
+<h1>Brandon Choi</h1>
 <TypeWriter 
-  strings={["Brandon Choi", "Software Engineer", "Backend Engineer"]} 
+  strings={["Software Engineer", "Backend Engineer", "React Developer"]} 
   speed={100} 
   deleteSpeed={50} 
   delayBetweenStrings={1500} 
