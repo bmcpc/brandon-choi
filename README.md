@@ -1,6 +1,6 @@
 # Brandon Choi Website
 
-A simple React + Vite website displaying "Brandon Choi" centered on the page.
+A modern React + Vite website featuring an animated typewriter effect with solarized color scheme.
 
 ## Getting Started
 
@@ -53,6 +53,7 @@ npm run build
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint for code quality
 
 ## Tech Stack
 
@@ -61,7 +62,3 @@ npm run build
 - CSS3
 - GitHub Actions
 - GitHub Pages
-
-## Deployment Status
-
-The deployment status can be monitored in the **Actions** tab of the GitHub repository.
