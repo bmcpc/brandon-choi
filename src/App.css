@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
   width: 100%;
   padding: 1rem;
   box-sizing: border-box;
@@ -47,6 +48,7 @@
 @media (max-width: 768px) {
   .app {
     padding: 0.5rem;
+    min-height: 100svh; /* Small viewport height for mobile */
   }
   
   .app h1 {
@@ -70,6 +72,7 @@
 @media (max-width: 480px) {
   .app {
     padding: 0.25rem;
+    min-height: 100svh; /* Small viewport height for mobile */
   }
   
   .app h1 {
