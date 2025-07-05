@@ -8,7 +8,6 @@ function App() {
   const typewriterStrings = [
     "Software Engineer",
     "Backend Engineer",
-    "React Developer",
     "Full Stack Engineer"
   ]
 
