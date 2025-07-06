@@ -1,14 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './ExperienceList.css'
 
 const ExperienceList = ({ items = [] }) => {
-  const [selectedId, setSelectedId] = useState(items.length > 0 ? items[0].id : null)
+  const [selectedId, setSelectedId] = useState(items.length > 0 ? Math.max(...items.map(item => item.id)) : null)
+  const [iconsVisible, setIconsVisible] = useState(false)
 
   const selectedItem = items.find(item => item.id === selectedId)
 
   const handleItemClick = (id) => {
     setSelectedId(id)
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIconsVisible(true)
+    }, 1000)
+    
+    return () => clearTimeout(timer)
+  }, [])
 
   if (items.length === 0) {
     return null
@@ -17,23 +26,23 @@ const ExperienceList = ({ items = [] }) => {
   return (
     <div className="experience-list">
       <div className="experience-container">
-        <div className="experience-sidebar">
-          {items.map((item) => (
+        {/* Top Icon Bar */}
+        <div className="experience-icon-bar">
+          {items.map((item, index) => (
             <div
               key={item.id}
-              className={`experience-item ${selectedId === item.id ? 'active' : ''}`}
+              className={`experience-icon-item ${selectedId === item.id ? 'active' : ''} ${iconsVisible ? 'visible' : ''}`}
               onClick={() => handleItemClick(item.id)}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="experience-icon">
                 {item.icon}
-              </div>
-              <div className="experience-name">
-                {item.name}
               </div>
             </div>
           ))}
         </div>
         
+        {/* Bottom Description Panel */}
         <div className="experience-content">
           {selectedItem && (
             <div key={selectedItem.id} className="experience-descriptions">

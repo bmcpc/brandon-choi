@@ -15,9 +15,18 @@ function App() {
     "Volleyball Enthusiast"
   ]
 
+  // Experience data from resume
   const experienceData = [
     {
-      id: 1,
+      id: 6,
+      name: "Mashgin",
+      icon: "M",
+      descriptions: [
+        "Building the future of AI-powered self-checkout kiosks."
+      ]
+    },
+    {
+      id: 5,
       name: "Geico",
       icon: "🏢",
       descriptions: [
@@ -26,7 +35,7 @@ function App() {
       ]
     },
     {
-      id: 2,
+      id: 4,
       name: "Glidewell Dental Labs",
       icon: "🦷",
       descriptions: [
@@ -43,9 +52,9 @@ function App() {
       ]
     },
     {
-      id: 4,
+      id: 2,
       name: "Amazon (AWS, Luna)",
-      icon: "�",
+      icon: "A",
       descriptions: [
         "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
         "Designed automation smoke testing of games utilizing AWS tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
@@ -54,7 +63,7 @@ function App() {
       ]
     },
     {
-      id: 5,
+      id: 1,
       name: "iHerb",
       icon: "🌿",
       descriptions: [
