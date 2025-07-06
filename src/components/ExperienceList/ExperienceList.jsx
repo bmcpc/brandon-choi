@@ -4,6 +4,7 @@ import './ExperienceList.css'
 const ExperienceList = ({ items = [] }) => {
   const [selectedId, setSelectedId] = useState(items.length > 0 ? Math.max(...items.map(item => item.id)) : null)
   const [iconsVisible, setIconsVisible] = useState(false)
+  const [descriptionVisible, setDescriptionVisible] = useState(false)
 
   const selectedItem = items.find(item => item.id === selectedId)
 
@@ -18,6 +19,16 @@ const ExperienceList = ({ items = [] }) => {
     
     return () => clearTimeout(timer)
   }, [])
+
+  useEffect(() => {
+    if (iconsVisible) {
+      const timer = setTimeout(() => {
+        setDescriptionVisible(true)
+      }, 1200) // Wait for icons to finish animating (1s + 0.2s per icon)
+      
+      return () => clearTimeout(timer)
+    }
+  }, [iconsVisible])
 
   if (items.length === 0) {
     return null
@@ -52,7 +63,7 @@ const ExperienceList = ({ items = [] }) => {
         
         {/* Bottom Description Panel */}
         <div className="experience-content">
-          {selectedItem && (
+          {selectedItem && descriptionVisible && (
             <div key={selectedItem.id} className="experience-descriptions">
               <h3 className="experience-title">{selectedItem.name}</h3>
               <ul className="experience-list-items">
