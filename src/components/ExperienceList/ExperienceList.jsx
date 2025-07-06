@@ -36,20 +36,14 @@ const ExperienceList = ({ items = [] }) => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="experience-icon">
-                {typeof item.icon === 'string' && (item.icon.startsWith('/') || item.icon.startsWith('./')) ? (
+                {item.icon.includes('data:image') || item.icon.includes('.png') || item.icon.includes('.jpg') || item.icon.includes('.jpeg') || item.icon.includes('.svg') ? (
                   <img 
                     src={item.icon} 
                     alt={`${item.name} logo`}
                     className="experience-logo"
                   />
-                ) : typeof item.icon === 'string' ? (
-                  item.icon
                 ) : (
-                  <img 
-                    src={item.icon} 
-                    alt={`${item.name} logo`}
-                    className="experience-logo"
-                  />
+                  item.icon
                 )}
               </div>
             </div>
