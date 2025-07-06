@@ -3,6 +3,7 @@
   max-width: 1200px;
   margin: 4rem auto;
   padding: 0 2rem;
+  box-sizing: border-box;
 }
 
 .experience-container {
