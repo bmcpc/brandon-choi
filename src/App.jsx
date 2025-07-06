@@ -1,7 +1,7 @@
-import './App.css'
-import Title from './components/Title'
-import TypeWriter from './components/TypeWriter'
-import ExperienceList from './components/ExperienceList'
+import './styles/App.css'
+import Title from './components/Title/Title'
+import TypeWriter from './components/TypeWriter/TypeWriter'
+import ExperienceList from './components/ExperienceList/ExperienceList'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import { useState, useEffect } from 'react'
@@ -11,10 +11,10 @@ function App() {
   const typewriterStrings = [
     "Software Engineer",
     "Backend Engineer",
-    "Full Stack Engineer"
+    "Full-Stack Engineer",
+    "Volleyball Enthusiast"
   ]
 
-  // Experience data from resume
   const experienceData = [
     {
       id: 1,
@@ -85,13 +85,13 @@ function App() {
         delayBetweenStrings={1500}
         startDelay={1800}
       />
+
+      <ExperienceList items={experienceData} />
       
       <div className="tech-icons">
         <img src={viteLogo} className="logo" alt="Vite logo" />
         <img src={reactLogo} className="logo react" alt="React logo" />
       </div>
-
-      <ExperienceList items={experienceData} />
     </div>
   )
 }
