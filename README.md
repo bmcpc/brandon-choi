@@ -1,4 +1,4 @@
-# Brandon Choi
+# [Brandon Choi](https://bmcpc.github.io/brandon-choi/)
 
 A personal website.
 
