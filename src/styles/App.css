@@ -7,7 +7,10 @@
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  max-width: clamp(600px, 80vw, 800px);
   background: #000000;
+  padding: 6rem 0 4rem 0;
+  box-sizing: border-box;
 }
 
 .main-title {
@@ -18,7 +21,7 @@
   text-align: center;
   text-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
   letter-spacing: -0.03em;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Futura', serif;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out;
@@ -30,7 +33,7 @@
 }
 
 .typewriter {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #ffffff;
   font-family: 'Courier New', monospace;
