@@ -1,0 +1,57 @@
+.initials-icon {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-text-primary); /* White background */
+  color: var(--color-bg-primary); /* Black text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Futura', serif;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
+  user-select: none;
+}
+
+.initials-icon.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.initials-icon:hover {
+  box-shadow: 0 4px 12px var(--color-shadow-glow);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.initials-icon:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Responsive design for mobile devices */
+@media (max-width: 768px) {
+  .initials-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    top: 15px;
+    left: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .initials-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    top: 10px;
+    left: 10px;
+  }
+}
