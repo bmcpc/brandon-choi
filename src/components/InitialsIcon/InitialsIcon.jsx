@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import './InitialsIcon.css'
 
 const InitialsIcon = ({ visible = false }) => {
