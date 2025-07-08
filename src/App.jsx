@@ -2,6 +2,7 @@ import './styles/App.css'
 import Title from './components/Title/Title'
 import TypeWriter from './components/TypeWriter/TypeWriter'
 import ExperienceList from './components/ExperienceList/ExperienceList'
+import InitialsIcon from './components/InitialsIcon/InitialsIcon'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import mashginLogo from './assets/mashgin-logo.png'
@@ -89,6 +90,7 @@ function App() {
 
   return (
     <div className="app">
+      <InitialsIcon visible={titleVisible} />
       <Title title="Brandon Choi" />
       
       <h1 className={`main-title ${titleVisible ? 'fade-in' : ''}`}>Brandon Choi</h1>
