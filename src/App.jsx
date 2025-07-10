@@ -5,12 +5,6 @@ import ExperienceList from './components/ExperienceList/ExperienceList'
 import InitialsIcon from './components/InitialsIcon/InitialsIcon'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import mashginLogo from './assets/mashgin-logo.png'
-import geicoLogo from './assets/geico-logo.png'
-import glidewellLogo from './assets/glidewell-logo.png'
-import happyMoneyLogo from './assets/happy-money-logo.jpeg'
-import amazonLogo from './assets/amazon-logo.png'
-import iherbLogo from './assets/iherb-logo.png'
 import { useState, useEffect } from 'react'
 
 function App() {
@@ -27,7 +21,6 @@ function App() {
     {
       id: 6,
       name: "Mashgin",
-      icon: mashginLogo,
       descriptions: [
         "Building the future of AI-powered self-checkout kiosks."
       ]
@@ -35,7 +28,6 @@ function App() {
     {
       id: 5,
       name: "Geico",
-      icon: geicoLogo,
       descriptions: [
         "Led technical debt reduction to enhance scalability and reliability by developing a re-usable Message Broker package (NServiceBus replacement) and re-architecting usage of Azure Service Bus and Kubernetes for efficient resource usage",
         "Contributed rapidly to the development of new features for the Rescoring platform using C#/.NET 8, Redis, SQL Server, Kubernetes, while improving scalability and performance for high-volume use"
@@ -44,7 +36,6 @@ function App() {
     {
       id: 4,
       name: "Glidewell Dental Labs",
-      icon: glidewellLogo,
       descriptions: [
         "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in AWS (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
         "Migrated order auto-printing service from legacy monolith to event-driven serverless design using AWS SNS and Lambda in NodeJS and TypeScript"
@@ -53,7 +44,6 @@ function App() {
     {
       id: 3,
       name: "Happy Money",
-      icon: happyMoneyLogo,
       descriptions: [
         "Implemented API features for Java Spring Boot event-driven (Kafka) microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
       ]
@@ -61,7 +51,6 @@ function App() {
     {
       id: 2,
       name: "Amazon (AWS, Luna)",
-      icon: amazonLogo,
       descriptions: [
         "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
         "Designed automation smoke testing of games utilizing AWS tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
@@ -72,7 +61,6 @@ function App() {
     {
       id: 1,
       name: "iHerb",
-      icon: iherbLogo,
       descriptions: [
         "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, Entity Framework, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
         "Improved Inventory HTTP API to single millisecond response times (50% faster) utilizing CQRS pattern and caching"

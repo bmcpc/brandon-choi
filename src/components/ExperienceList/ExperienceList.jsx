@@ -37,7 +37,7 @@ const ExperienceList = ({ items = [] }) => {
   return (
     <div className="experience-list">
       <div className="experience-container">
-        {/* Top Icon Bar */}
+        {/* Top Experience Bar */}
         <div className="experience-icon-bar">
           {items.map((item, index) => (
             <div
@@ -46,16 +46,8 @@ const ExperienceList = ({ items = [] }) => {
               onClick={() => handleItemClick(item.id)}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <div className="experience-icon">
-                {item.icon.includes('data:image') || item.icon.includes('.png') || item.icon.includes('.jpg') || item.icon.includes('.jpeg') || item.icon.includes('.svg') ? (
-                  <img 
-                    src={item.icon} 
-                    alt={`${item.name} logo`}
-                    className="experience-logo"
-                  />
-                ) : (
-                  item.icon
-                )}
+              <div className="experience-text">
+                {item.name}
               </div>
             </div>
           ))}
