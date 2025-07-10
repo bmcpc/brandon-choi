@@ -14,11 +14,14 @@
   font-weight: 700;
   font-family: 'Futura', serif;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1; /* Lower z-index so content appears above */
   opacity: 0;
   transform: translateY(-10px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
   user-select: none;
+  /* Add subtle backdrop to maintain visibility when content passes over */
+  backdrop-filter: blur(2px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .initials-icon.fade-in {
