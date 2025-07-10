@@ -19,6 +19,14 @@
   --color-accent-secondary: #535bf2;
   --color-accent-glow: #646cffaa;
   
+  /* Seafoam green colors for experience selection */
+  --color-seafoam-primary: #7fffd4;
+  --color-seafoam-secondary: #5fd3a8;
+  --color-seafoam-glow: rgba(127, 255, 212, 0.4);
+  --color-seafoam-border: rgba(127, 255, 212, 0.6);
+  --color-seafoam-shadow-light: rgba(127, 255, 212, 0.2);
+  --color-seafoam-shadow-strong: rgba(127, 255, 212, 0.8);
+  
   --color-border-primary: rgba(255, 255, 255, 0.1);
   --color-border-secondary: rgba(255, 255, 255, 0.05);
   
