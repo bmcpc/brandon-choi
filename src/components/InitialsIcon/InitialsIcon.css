@@ -5,7 +5,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--color-text-primary); /* White background */
+  background: rgba(255, 255, 255, 0.95); /* More opaque background */
   color: var(--color-bg-primary); /* Black text */
   display: flex;
   align-items: center;
@@ -19,9 +19,10 @@
   transform: translateY(-10px);
   transition: opacity 1.5s ease-out, transform 1.5s ease-out, box-shadow 0.3s ease, transform 0.3s ease;
   user-select: none;
-  /* Add subtle backdrop to maintain visibility when content passes over */
-  backdrop-filter: blur(2px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  /* Enhanced backdrop and border for better visibility */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .initials-icon.fade-in {
@@ -32,6 +33,7 @@
 .initials-icon:hover {
   box-shadow: 0 4px 12px var(--color-shadow-glow);
   transform: translateY(-2px) scale(1.05);
+  background: rgba(255, 255, 255, 1);
 }
 
 .initials-icon:active {
@@ -41,20 +43,28 @@
 /* Responsive design for mobile devices */
 @media (max-width: 768px) {
   .initials-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
     top: 15px;
-    left: 15px;
+    right: 15px; /* Move to right side on mobile to avoid text overlap */
+    left: auto;
+    /* Semi-transparent on mobile to be less intrusive */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
   }
 }
 
 @media (max-width: 480px) {
   .initials-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
     top: 10px;
-    left: 10px;
+    right: 10px;
+    left: auto;
+    /* Even more subtle on small screens */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6px);
   }
 }
