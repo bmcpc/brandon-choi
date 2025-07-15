@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './ExperienceList.css'
+import TechStackIcons from '../TechStackIcons/TechStackIcons'
 
 const ExperienceList = ({ items = [] }) => {
   const [selectedId, setSelectedId] = useState(items.length > 0 ? Math.max(...items.map(item => item.id)) : null)
@@ -58,6 +59,12 @@ const ExperienceList = ({ items = [] }) => {
           {selectedItem && descriptionVisible && (
             <div key={selectedItem.id} className="experience-descriptions">
               <h3 className="experience-title">{selectedItem.name}</h3>
+              {selectedItem.techStack && (
+                <TechStackIcons 
+                  techStack={selectedItem.techStack} 
+                  visible={descriptionVisible}
+                />
+              )}
               <ul className="experience-list-items">
                 {selectedItem.descriptions.map((description, index) => (
                   <li key={index} className="experience-list-item">
