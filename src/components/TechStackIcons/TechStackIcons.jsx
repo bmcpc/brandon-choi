@@ -103,6 +103,11 @@ const TechStackIcons = ({ techStack = [], visible = false }) => {
       name: 'Entity Framework',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg',
       color: '#512bd4'
+    },
+    mysql: {
+      name: 'MySQL',
+      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+      color: '#4479a1'
     }
   }
 
