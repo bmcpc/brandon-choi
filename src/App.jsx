@@ -37,24 +37,24 @@ function App() {
       id: 4,
       name: "Glidewell Dental Labs",
       descriptions: [
-        "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in AWS (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
-        "Migrated order auto-printing service from legacy monolith to event-driven serverless design using AWS SNS and Lambda in NodeJS and TypeScript"
+        "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in cloud infrastructure (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
+        "Migrated order auto-printing service from legacy monolith to event-driven serverless design using cloud functions and messaging services in NodeJS and TypeScript"
       ]
     },
     {
       id: 3,
       name: "Happy Money",
       descriptions: [
-        "Implemented API features for Java Spring Boot event-driven (Kafka) microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
+        "Implemented API features for Java Spring Boot event-driven microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
       ]
     },
     {
       id: 2,
-      name: "Amazon (AWS, Luna)",
+      name: "Amazon",
       descriptions: [
         "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
-        "Designed automation smoke testing of games utilizing AWS tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
-        "Maintained and managed console platform (website) for other System Manager tool assets via internal server platform in React w/ Typescript and Java, deployed in AWS",
+        "Designed automation smoke testing of games utilizing cloud tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
+        "Maintained and managed console platform (website) for other System Manager tool assets via internal server platform in React w/ Typescript and Java, deployed in cloud infrastructure",
         "Led region build effort for MXP and CPT of Systems Manager by preparing resources and assets via internal tooling, testing, and identifying pain points for automation"
       ]
     },
@@ -62,7 +62,7 @@ function App() {
       id: 1,
       name: "iHerb",
       descriptions: [
-        "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, Entity Framework, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
+        "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
         "Improved Inventory HTTP API to single millisecond response times (50% faster) utilizing CQRS pattern and caching"
       ]
     }
