@@ -13,7 +13,6 @@
   font-size: 1.2rem;
   font-weight: 700;
   font-family: 'Futura', serif;
-  cursor: pointer;
   z-index: 1; /* Lower z-index so content appears above */
   opacity: 0;
   transform: translateY(-10px);

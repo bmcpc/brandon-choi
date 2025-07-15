@@ -86,7 +86,6 @@ button {
   font-family: inherit;
   background-color: var(--color-bg-secondary);
   color: var(--color-text-primary);
-  cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
