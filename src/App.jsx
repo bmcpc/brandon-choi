@@ -21,7 +21,7 @@ function App() {
     {
       id: 6,
       name: "Mashgin",
-      techStack: ["python", "vue", "cursor", "mysql", "aws"],
+      techStack: ["python", "vue", "mysql"],
       descriptions: [
         "Building the future of AI-powered self-checkout kiosks."
       ]
@@ -38,7 +38,7 @@ function App() {
     {
       id: 4,
       name: "Glidewell Dental Labs",
-      techStack: ["csharp", "dotnet", "react", "aws", "mongodb", "nodejs", "typescript"],
+      techStack: ["csharp", "dotnet", "react", "mongodb", "nodejs", "typescript"],
       descriptions: [
         "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in AWS (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
         "Migrated order auto-printing service from legacy monolith to event-driven serverless design using AWS SNS and Lambda in NodeJS and TypeScript"
@@ -47,7 +47,7 @@ function App() {
     {
       id: 3,
       name: "Happy Money",
-      techStack: ["java", "spring", "kafka"],
+      techStack: ["java", "spring"],
       descriptions: [
         "Implemented API features for Java Spring Boot event-driven (Kafka) microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
       ]
@@ -55,7 +55,7 @@ function App() {
     {
       id: 2,
       name: "Amazon (AWS, Luna)",
-      techStack: ["c", "python", "react", "typescript", "java", "aws", "linux"],
+      techStack: ["c", "python", "react", "typescript", "java", "linux"],
       descriptions: [
         "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
         "Designed automation smoke testing of games utilizing AWS tools (Lambda, SNS, SQS, S3) with Python to communicate with an existing headless testing tool",
@@ -66,7 +66,7 @@ function App() {
     {
       id: 1,
       name: "iHerb",
-      techStack: ["csharp", "dotnet", "sqlserver", "entityframework"],
+      techStack: ["csharp", "dotnet", "sqlserver"],
       descriptions: [
         "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, Entity Framework, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
         "Improved Inventory HTTP API to single millisecond response times (50% faster) utilizing CQRS pattern and caching"

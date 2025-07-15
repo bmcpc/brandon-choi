@@ -13,12 +13,6 @@ const TechStackIcons = ({ techStack = [], visible = false }) => {
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
       color: '#4fc08d'
     },
-    cursor: {
-      name: 'Cursor',
-      // Using a generic code editor icon since Cursor might not be available
-      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
-      color: '#007acc'
-    },
     csharp: {
       name: 'C#',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg',
@@ -56,7 +50,7 @@ const TechStackIcons = ({ techStack = [], visible = false }) => {
     },
     aws: {
       name: 'AWS',
-      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg',
+      url: '/aws-icon.svg',
       color: '#ff9900'
     },
     mongodb: {
@@ -84,11 +78,6 @@ const TechStackIcons = ({ techStack = [], visible = false }) => {
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg',
       color: '#6db33f'
     },
-    kafka: {
-      name: 'Apache Kafka',
-      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg',
-      color: '#231f20'
-    },
     c: {
       name: 'C',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
@@ -98,11 +87,6 @@ const TechStackIcons = ({ techStack = [], visible = false }) => {
       name: 'Linux',
       url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',
       color: '#fcc624'
-    },
-    entityframework: {
-      name: 'Entity Framework',
-      url: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg',
-      color: '#512bd4'
     },
     mysql: {
       name: 'MySQL',
