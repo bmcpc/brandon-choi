@@ -1,5 +1,16 @@
 /* Theme Examples - Add these to your globals.css :root selector to change themes */
 
+/* Font System (consistent across all themes) */
+/*
+--font-family-primary: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+--font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+--font-weight-normal: 400;
+--font-weight-medium: 500;
+--font-weight-semibold: 600;
+--font-weight-bold: 700;
+--font-weight-extrabold: 800;
+*/
+
 /* Current Dark Theme (Default) */
 /*
 --color-bg-primary: #000000;
