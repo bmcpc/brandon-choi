@@ -62,7 +62,7 @@
 }
 
 .experience-text {
-  font-family: 'Futura PT', sans-serif;
+  font-family: var(--font-family-primary);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-text-primary);
@@ -96,7 +96,7 @@
 }
 
 .experience-title {
-  font-family: 'Futura', serif;
+  font-family: var(--font-family-primary);
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--color-text-primary);
@@ -116,7 +116,7 @@
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text-tertiary);
-  font-family: 'Futura PT Light', sans-serif;
+  font-family: var(--font-family-primary);
 }
 
 .experience-list-item::before {
