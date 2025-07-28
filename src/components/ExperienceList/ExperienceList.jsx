@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './ExperienceList.css'
 import TechStackIcons from '../TechStackIcons/TechStackIcons'
 
-const ExperienceList = ({ items = [] }) => {
+const ExperienceList = ({ items = [], onExperienceLoaded }) => {
   const [selectedId, setSelectedId] = useState(items.length > 0 ? Math.max(...items.map(item => item.id)) : null)
   const [iconsVisible, setIconsVisible] = useState(false)
   const [descriptionVisible, setDescriptionVisible] = useState(false)
@@ -30,6 +30,17 @@ const ExperienceList = ({ items = [] }) => {
       return () => clearTimeout(timer)
     }
   }, [iconsVisible])
+
+  useEffect(() => {
+    if (descriptionVisible && onExperienceLoaded) {
+      // Notify parent that experience section is fully loaded
+      const timer = setTimeout(() => {
+        onExperienceLoaded()
+      }, 500) // Wait a bit after descriptions are visible
+      
+      return () => clearTimeout(timer)
+    }
+  }, [descriptionVisible, onExperienceLoaded])
 
   if (items.length === 0) {
     return null
