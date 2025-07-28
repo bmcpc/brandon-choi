@@ -21,7 +21,7 @@ function App() {
     {
       id: 6,
       name: "Mashgin",
-      techStack: ["python", "vue", "mysql"],
+      techStack: ["python", "vue", "mysql", "redis"],
       descriptions: [
         "Building the future of AI-powered self-checkout kiosks."
       ]
