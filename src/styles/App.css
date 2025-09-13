@@ -21,7 +21,7 @@
   text-align: center;
   text-shadow: 0 6px 12px var(--color-shadow-text);
   letter-spacing: -0.03em;
-  font-family: var(--font-family-primary);
+  font-family: var(--font-family-mono);
   font-synthesis: none; /* Ensure consistent rendering */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
