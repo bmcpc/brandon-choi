@@ -58,7 +58,15 @@ const ExperienceList = ({ items = [] }) => {
         <div className="experience-content">
           {selectedItem && descriptionVisible && (
             <div key={selectedItem.id} className="experience-descriptions">
-              <h3 className="experience-title">{selectedItem.name}</h3>
+              <h3 className="experience-title">
+                {selectedItem.name === "Mashgin" ? (
+                  <a href="https://www.mashgin.com/" target="_blank" rel="noopener noreferrer">
+                    {selectedItem.name}
+                  </a>
+                ) : (
+                  selectedItem.name
+                )}
+              </h3>
               {selectedItem.techStack && (
                 <TechStackIcons 
                   techStack={selectedItem.techStack} 
