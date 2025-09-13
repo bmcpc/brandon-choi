@@ -59,9 +59,10 @@ const ExperienceList = ({ items = [] }) => {
           {selectedItem && descriptionVisible && (
             <div key={selectedItem.id} className="experience-descriptions">
               <h3 className="experience-title">
-                {selectedItem.name === "Mashgin" ? (
-                  <a href="https://www.mashgin.com/" target="_blank" rel="noopener noreferrer">
+                {selectedItem.titleHyperlink ? (
+                  <a href={selectedItem.titleHyperlink} target="_blank" rel="noopener noreferrer" className="title-hyperlink">
                     {selectedItem.name}
+                    <span className="external-link-icon">↗</span>
                   </a>
                 ) : (
                   selectedItem.name
