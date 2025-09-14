@@ -73,6 +73,13 @@ body {
   /* Improve scroll performance */
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  /* Prevent scroll jumping and improve performance */
+  overscroll-behavior: contain;
+  scroll-padding-top: 0;
+  scroll-snap-type: none;
+  /* Additional scroll stability */
+  scroll-margin-top: 0;
+  scroll-margin-bottom: 0;
 }
 
 #root {
@@ -84,6 +91,9 @@ body {
   align-items: flex-start;
   /* Prevent layout shifts during scroll */
   contain: layout style;
+  /* Improve scroll performance and prevent jumping */
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -117,6 +127,10 @@ button:focus-visible {
     font-size: 14px;
     /* Ensure mobile browsers use the visible viewport */
     min-height: 100svh; /* Small viewport height */
+    /* Additional mobile scroll optimizations */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
   }
   
   #root {
