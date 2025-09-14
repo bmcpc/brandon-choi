@@ -17,8 +17,9 @@
   /* Improve scroll performance and prevent layout shifts */
   contain: layout style;
   will-change: auto;
-  /* Prevent scroll jumping and improve mobile performance */
-  overscroll-behavior: none;
+  /* Allow vertical bounce but prevent horizontal overscroll issues */
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none;
   /* Ensure stable layout */
   position: relative;
 }
@@ -212,13 +213,15 @@
     padding: 0 1rem;
     /* Improve mobile scroll performance */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   .experience-container {
     min-height: 25rem;
-    /* Prevent mobile scroll issues */
-    overscroll-behavior: none;
+    /* Allow vertical bounce but prevent horizontal overscroll issues */
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   .experience-icon-bar {
@@ -254,7 +257,8 @@
     padding: 1.5rem;
     /* Improve mobile scroll performance */
     min-height: 15rem;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   .experience-title {
@@ -271,8 +275,9 @@
 @media (max-width: 480px) {
   .experience-container {
     min-height: 22rem;
-    /* Additional mobile optimizations */
-    overscroll-behavior: none;
+    /* Allow vertical bounce but prevent horizontal overscroll issues */
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   .experience-icon-bar {
@@ -304,7 +309,8 @@
     padding: 1rem;
     /* Improve mobile scroll performance for small screens */
     min-height: 12rem;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
 
   .experience-title {
