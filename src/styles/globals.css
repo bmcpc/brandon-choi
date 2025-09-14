@@ -72,8 +72,9 @@ body {
   /* Remove display: flex and place-items: center to avoid conflicts */
   /* Improve scroll performance - remove smooth behavior to prevent conflicts */
   -webkit-overflow-scrolling: touch;
-  /* Prevent scroll jumping and improve performance */
-  overscroll-behavior: none;
+  /* Allow bounce effect but prevent jitter with selective overscroll behavior */
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none;
   scroll-padding-top: 0;
   scroll-snap-type: none;
   /* Additional scroll stability */
@@ -92,8 +93,9 @@ body {
   align-items: flex-start;
   /* Prevent layout shifts during scroll */
   contain: layout style;
-  /* Improve scroll performance and prevent jumping */
-  overscroll-behavior: none;
+  /* Allow vertical bounce but prevent horizontal overscroll issues */
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none;
   /* Ensure consistent height to prevent scroll jumping */
   height: auto;
   min-height: 100vh;
@@ -132,7 +134,8 @@ button:focus-visible {
     min-height: 100svh; /* Small viewport height */
     /* Additional mobile scroll optimizations */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: none;
+    overscroll-behavior-y: auto;
+    overscroll-behavior-x: none;
   }
   
   #root {
@@ -177,7 +180,8 @@ button:focus-visible {
 /* Ensure smooth scrolling only when explicitly requested */
 html {
   scroll-behavior: auto;
-  overscroll-behavior: none;
+  overscroll-behavior-y: auto;
+  overscroll-behavior-x: none;
 }
 
 @media (prefers-color-scheme: light) {
