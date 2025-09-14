@@ -12,36 +12,36 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
-  /* Color System */
-  --color-bg-primary: #000000;
-  --color-bg-secondary: #1a1a1a;
-  --color-bg-overlay: rgba(255, 255, 255, 0.05);
-  --color-bg-overlay-hover: rgba(255, 255, 255, 0.08);
-  --color-bg-overlay-active: rgba(255, 255, 255, 0.15);
+  /* Color System - Solarized Dark (darker variant) */
+  --color-bg-primary: #001f27; /* Darker than standard Solarized Dark #002b36 */
+  --color-bg-secondary: #002b36; /* Standard Solarized Dark Base03 */
+  --color-bg-overlay: rgba(131, 148, 150, 0.05); /* Base0 with low opacity */
+  --color-bg-overlay-hover: rgba(131, 148, 150, 0.08);
+  --color-bg-overlay-active: rgba(131, 148, 150, 0.15);
   
-  --color-text-primary: #ffffff;
-  --color-text-secondary: rgba(255, 255, 255, 0.95);
-  --color-text-tertiary: rgba(255, 255, 255, 0.9);
-  --color-text-muted: rgba(255, 255, 255, 0.6);
+  --color-text-primary: #839496; /* Solarized Base0 */
+  --color-text-secondary: #93a1a1; /* Solarized Base1 */
+  --color-text-tertiary: #586e75; /* Solarized Base01 */
+  --color-text-muted: #657b83; /* Solarized Base00 */
   
-  --color-accent-primary: #646cff;
-  --color-accent-secondary: #535bf2;
-  --color-accent-glow: #646cffaa;
+  --color-accent-primary: #268bd2; /* Solarized Blue */
+  --color-accent-secondary: #2aa198; /* Solarized Cyan */
+  --color-accent-glow: #268bd2aa;
   
-  /* Seafoam green colors for experience selection */
-  --color-seafoam-primary: #7fffd4;
-  --color-seafoam-secondary: #5fd3a8;
-  --color-seafoam-glow: rgba(127, 255, 212, 0.4);
-  --color-seafoam-border: rgba(127, 255, 212, 0.6);
-  --color-seafoam-shadow-light: rgba(127, 255, 212, 0.2);
-  --color-seafoam-shadow-strong: rgba(127, 255, 212, 0.8);
+  /* Solarized accent colors for experience selection */
+  --color-seafoam-primary: #2aa198; /* Solarized Cyan */
+  --color-seafoam-secondary: #268bd2; /* Solarized Blue */
+  --color-seafoam-glow: rgba(42, 161, 152, 0.4);
+  --color-seafoam-border: rgba(42, 161, 152, 0.6);
+  --color-seafoam-shadow-light: rgba(42, 161, 152, 0.2);
+  --color-seafoam-shadow-strong: rgba(42, 161, 152, 0.8);
   
-  --color-border-primary: rgba(255, 255, 255, 0.1);
-  --color-border-secondary: rgba(255, 255, 255, 0.05);
+  --color-border-primary: rgba(131, 148, 150, 0.2); /* Base0 with opacity */
+  --color-border-secondary: rgba(131, 148, 150, 0.1);
   
-  --color-shadow-text: rgba(255, 255, 255, 0.1);
-  --color-shadow-glow: rgba(255, 255, 255, 0.2);
-  --color-shadow-strong: rgba(255, 255, 255, 0.3);
+  --color-shadow-text: rgba(131, 148, 150, 0.1);
+  --color-shadow-glow: rgba(131, 148, 150, 0.2);
+  --color-shadow-strong: rgba(131, 148, 150, 0.3);
 
   color: var(--color-text-secondary);
   background-color: var(--color-bg-primary);

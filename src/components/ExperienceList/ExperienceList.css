@@ -65,7 +65,7 @@
   font-family: var(--font-family-mono);
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: #839496; /* Solarized Base0 - primary text color */
   text-align: center;
   white-space: nowrap;
   transition: all 0.3s ease;
@@ -99,7 +99,7 @@
   font-family: var(--font-family-mono);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: #839496; /* Solarized Base0 - primary text color */
   margin-bottom: 1.5rem;
   text-shadow: 0 2px 4px var(--color-shadow-text);
 }
@@ -141,7 +141,7 @@
   padding: 0.75rem 0 0.75rem 1.5rem;
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--color-text-tertiary);
+  color: #93a1a1; /* Solarized Base1 - better contrast for descriptions */
   font-family: var(--font-family-mono);
 }
 
@@ -149,7 +149,7 @@
   content: '•';
   position: absolute;
   left: 0;
-  color: var(--color-text-muted);
+  color: #657b83; /* Solarized Base00 - muted but visible */
   font-size: 1.2rem;
 }
 
