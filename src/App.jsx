@@ -2,6 +2,7 @@ import './styles/App.css'
 import Title from './components/Title/Title'
 import TypeWriter from './components/TypeWriter/TypeWriter'
 import ExperienceList from './components/ExperienceList/ExperienceList'
+import ContactSection from './components/ContactSection/ContactSection'
 import InitialsIcon from './components/InitialsIcon/InitialsIcon'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -9,12 +10,17 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const [titleVisible, setTitleVisible] = useState(false)
+  const [contactVisible, setContactVisible] = useState(false)
   const typewriterStrings = [
     "Software Engineer",
     "Backend Engineer",
     "Full-Stack Engineer",
     "Volleyball Enthusiast"
   ]
+
+  const handleExperienceLoaded = () => {
+    setContactVisible(true)
+  }
 
   // Experience data from resume
   const experienceData = [
@@ -108,7 +114,9 @@ function App() {
         startDelay={1800}
       />
 
-      <ExperienceList items={experienceData} />
+      <ExperienceList items={experienceData} onExperienceLoaded={handleExperienceLoaded} />
+      
+      <ContactSection visible={contactVisible} />
       
       <div className="tech-icons">
         <img src={viteLogo} className="logo" alt="Vite logo" />
