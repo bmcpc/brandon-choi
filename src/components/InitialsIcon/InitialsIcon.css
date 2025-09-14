@@ -23,6 +23,10 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Prevent touch events from interfering with scrolling */
+  touch-action: manipulation;
+  /* Ensure the element doesn't interfere with scroll gestures */
+  pointer-events: auto;
 }
 
 .initials-icon.fade-in {
@@ -36,8 +40,10 @@
   background: rgba(255, 255, 255, 1);
 }
 
-.initials-icon:active {
+.initials-icon:active,
+.initials-icon.pressed {
   transform: translateY(0) scale(0.95);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Responsive design for mobile devices */
@@ -52,6 +58,8 @@
     /* Semi-transparent on mobile to be less intrusive */
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
+    /* Reduce touch sensitivity on mobile */
+    touch-action: manipulation;
   }
 }
 
@@ -66,5 +74,7 @@
     /* Even more subtle on small screens */
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(6px);
+    /* Further reduce touch sensitivity on small screens */
+    touch-action: manipulation;
   }
 }
