@@ -39,7 +39,7 @@ function App() {
     },
     {
       id: 4,
-      name: "Glidewell Dental Labs",
+      name: "Glidewell",
       titleHyperlink: "https://www.glidewell.com/",
       techStack: ["csharp", "dotnet", "react", "mongodb", "nodejs", "typescript"],
       descriptions: [
@@ -57,7 +57,7 @@ function App() {
     },
     {
       id: 2,
-      name: "Amazon (AWS, Luna)",
+      name: "Amazon",
       titleHyperlink: "https://aws.amazon.com/",
       techStack: ["c", "python", "react", "typescript", "java", "linux"],
       descriptions: [
