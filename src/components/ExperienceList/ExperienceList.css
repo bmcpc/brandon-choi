@@ -8,7 +8,7 @@
 .experience-container {
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 30rem;
   background: var(--color-bg-overlay);
   border-radius: 12px;
   backdrop-filter: blur(10px);
@@ -101,8 +101,8 @@
   /* Prevent layout shifts and improve scroll performance */
   contain: layout style;
   will-change: auto;
-  /* Ensure content doesn't cause jumping - use fixed height to prevent layout shifts */
-  height: 300px;
+  /* Ensure content doesn't cause jumping - use min-height for responsiveness */
+  min-height: 20rem;
   position: relative;
 }
 
@@ -216,7 +216,7 @@
   }
 
   .experience-container {
-    min-height: 400px;
+    min-height: 25rem;
     /* Prevent mobile scroll issues */
     overscroll-behavior: none;
   }
@@ -253,7 +253,7 @@
   .experience-content {
     padding: 1.5rem;
     /* Improve mobile scroll performance */
-    height: 250px;
+    min-height: 15rem;
     overscroll-behavior: none;
   }
 
@@ -270,7 +270,7 @@
 
 @media (max-width: 480px) {
   .experience-container {
-    min-height: 350px;
+    min-height: 22rem;
     /* Additional mobile optimizations */
     overscroll-behavior: none;
   }
@@ -303,7 +303,7 @@
   .experience-content {
     padding: 1rem;
     /* Improve mobile scroll performance for small screens */
-    height: 200px;
+    min-height: 12rem;
     overscroll-behavior: none;
   }
 

@@ -49,7 +49,7 @@
   font-weight: 600;
   color: var(--color-text-primary);
   font-family: var(--font-family-mono);
-  height: 3rem; /* Fixed height instead of min-height to prevent layout shifts */
+  min-height: 3rem; /* Use min-height for responsiveness while preventing layout shifts */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@
   
   .typewriter {
     font-size: 1.25rem; /* More readable size for mobile */
-    height: 2.5rem; /* Fixed height to prevent layout shifts */
+    min-height: 2.5rem; /* Use min-height for responsiveness */
   }
   
   .logo {
@@ -131,7 +131,7 @@
   
   .typewriter {
     font-size: 1.125rem; /* Better readability on small screens */
-    height: 2rem; /* Fixed height to prevent layout shifts */
+    min-height: 2rem; /* Use min-height for responsiveness */
   }
   
   .logo {
@@ -152,6 +152,6 @@
   
   .typewriter {
     font-size: 1rem;
-    height: 1.75rem; /* Fixed height for very small screens */
+    min-height: 1.75rem; /* Use min-height for responsiveness */
   }
 }
