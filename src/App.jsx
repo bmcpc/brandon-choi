@@ -20,6 +20,7 @@ function App() {
   const experienceData = [
     {
       id: 6,
+      title: "Mashgin",
       name: "Mashgin",
       titleHyperlink: "https://www.mashgin.com/",
       techStack: ["python", "vue", "mysql", "redis"],
@@ -29,6 +30,7 @@ function App() {
     },
     {
       id: 5,
+      title: "Geico",
       name: "Geico",
       titleHyperlink: "https://www.geico.com/",
       techStack: ["csharp", "dotnet", "azure", "kubernetes", "redis", "sqlserver"],
@@ -39,6 +41,7 @@ function App() {
     },
     {
       id: 4,
+      title: "Glidewell",
       name: "Glidewell Dental Labs",
       titleHyperlink: "https://www.glidewell.com/",
       techStack: ["csharp", "dotnet", "react", "mongodb", "nodejs", "typescript"],
@@ -49,6 +52,7 @@ function App() {
     },
     {
       id: 3,
+      title: "Happy Money",
       name: "Happy Money",
       techStack: ["java", "spring"],
       descriptions: [
@@ -57,6 +61,7 @@ function App() {
     },
     {
       id: 2,
+      title: "Amazon",
       name: "Amazon (AWS, Luna)",
       titleHyperlink: "https://aws.amazon.com/",
       techStack: ["c", "python", "react", "typescript", "java", "linux"],
@@ -69,6 +74,7 @@ function App() {
     },
     {
       id: 1,
+      title: "iHerb",
       name: "iHerb",
       titleHyperlink: "https://www.iherb.com/",
       techStack: ["csharp", "dotnet", "sqlserver"],
