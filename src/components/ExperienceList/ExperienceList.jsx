@@ -10,13 +10,7 @@ const ExperienceList = ({ items = [] }) => {
   const selectedItem = items.find(item => item.id === selectedId)
 
   const handleItemClick = useCallback((id) => {
-    // Prevent scroll jumping by maintaining current scroll position
-    const currentScrollY = window.scrollY
     setSelectedId(id)
-    // Restore scroll position after state update
-    requestAnimationFrame(() => {
-      window.scrollTo(0, currentScrollY)
-    })
   }, [])
 
   useEffect(() => {
@@ -30,13 +24,7 @@ const ExperienceList = ({ items = [] }) => {
   useEffect(() => {
     if (iconsVisible) {
       const timer = setTimeout(() => {
-        // Prevent scroll jumping during content transition
-        const currentScrollY = window.scrollY
         setDescriptionVisible(true)
-        // Maintain scroll position after content change
-        requestAnimationFrame(() => {
-          window.scrollTo(0, currentScrollY)
-        })
       }, 1200) // Wait for icons to finish animating (1s + 0.2s per icon)
       
       return () => clearTimeout(timer)
