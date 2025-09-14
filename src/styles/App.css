@@ -44,7 +44,7 @@
   font-weight: 600;
   color: var(--color-text-primary);
   font-family: var(--font-family-mono);
-  min-height: 3rem;
+  height: 3rem; /* Fixed height instead of min-height to prevent layout shifts */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,6 +53,9 @@
   /* Optimize for better scroll performance */
   will-change: auto;
   contain: layout style;
+  /* Prevent text from causing layout shifts */
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tech-icons {
@@ -103,7 +106,7 @@
   
   .typewriter {
     font-size: 1.25rem; /* More readable size for mobile */
-    min-height: 2.5rem;
+    height: 2.5rem; /* Fixed height to prevent layout shifts */
   }
   
   .logo {
@@ -120,7 +123,7 @@
   
   .typewriter {
     font-size: 1.125rem; /* Better readability on small screens */
-    min-height: 2rem;
+    height: 2rem; /* Fixed height to prevent layout shifts */
   }
   
   .logo {
@@ -141,5 +144,6 @@
   
   .typewriter {
     font-size: 1rem;
+    height: 1.75rem; /* Fixed height for very small screens */
   }
 }
