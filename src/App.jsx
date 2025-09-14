@@ -30,6 +30,7 @@ function App() {
     {
       id: 5,
       name: "Geico",
+      titleHyperlink: "https://www.geico.com/",
       techStack: ["csharp", "dotnet", "azure", "kubernetes", "redis", "sqlserver"],
       descriptions: [
         "Led technical debt reduction to enhance scalability and reliability by developing a re-usable Message Broker package (NServiceBus replacement) and re-architecting usage of Azure Service Bus and Kubernetes for efficient resource usage",
@@ -39,6 +40,7 @@ function App() {
     {
       id: 4,
       name: "Glidewell Dental Labs",
+      titleHyperlink: "https://www.glidewell.com/",
       techStack: ["csharp", "dotnet", "react", "mongodb", "nodejs", "typescript"],
       descriptions: [
         "Decomposed monolithic Lab Management System facilitating order processing; designed and built event-driven microservice RESTful APIs using .NET 6, C#, React, while hosted in AWS (ECS, MQ/RabbitMQ, DocumentDB/MongoDB, Opensearch/Elasticsearch)",
@@ -56,6 +58,7 @@ function App() {
     {
       id: 2,
       name: "Amazon (AWS, Luna)",
+      titleHyperlink: "https://aws.amazon.com/",
       techStack: ["c", "python", "react", "typescript", "java", "linux"],
       descriptions: [
         "Implemented performance monitoring using Linux pseudofiles for in-house streaming server to provide additional insight on games running on Linux servers utilizing Proton in C; visualized via Kibana dashboards",
@@ -67,6 +70,7 @@ function App() {
     {
       id: 1,
       name: "iHerb",
+      titleHyperlink: "https://www.iherb.com/",
       techStack: ["csharp", "dotnet", "sqlserver"],
       descriptions: [
         "Built out various distributed microservices (Web APIs, windows services) using C#, .NET Core, Entity Framework, SQL Server, and Domain Driven Design to handle critical order processing business logic and inventory",
