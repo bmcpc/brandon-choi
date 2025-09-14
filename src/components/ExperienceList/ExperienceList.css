@@ -8,7 +8,7 @@
 .experience-container {
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  min-height: 30rem;
   background: var(--color-bg-overlay);
   border-radius: 12px;
   backdrop-filter: blur(10px);
@@ -18,8 +18,7 @@
   contain: layout style;
   will-change: auto;
   /* Prevent scroll jumping and improve mobile performance */
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  overscroll-behavior: none;
   /* Ensure stable layout */
   position: relative;
 }
@@ -102,8 +101,8 @@
   /* Prevent layout shifts and improve scroll performance */
   contain: layout style;
   will-change: auto;
-  /* Ensure content doesn't cause jumping */
-  min-height: 200px;
+  /* Ensure content doesn't cause jumping - use min-height for responsiveness */
+  min-height: 20rem;
   position: relative;
 }
 
@@ -116,6 +115,9 @@
   /* Ensure smooth transitions without affecting scroll */
   transform: translateZ(0);
   backface-visibility: hidden;
+  /* Prevent content from causing layout shifts */
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .experience-title {
@@ -210,14 +212,13 @@
     padding: 0 1rem;
     /* Improve mobile scroll performance */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
   }
 
   .experience-container {
-    min-height: 400px;
+    min-height: 25rem;
     /* Prevent mobile scroll issues */
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
+    overscroll-behavior: none;
   }
 
   .experience-icon-bar {
@@ -252,8 +253,8 @@
   .experience-content {
     padding: 1.5rem;
     /* Improve mobile scroll performance */
-    min-height: 150px;
-    overscroll-behavior: contain;
+    min-height: 15rem;
+    overscroll-behavior: none;
   }
 
   .experience-title {
@@ -269,10 +270,9 @@
 
 @media (max-width: 480px) {
   .experience-container {
-    min-height: 350px;
+    min-height: 22rem;
     /* Additional mobile optimizations */
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
+    overscroll-behavior: none;
   }
 
   .experience-icon-bar {
@@ -303,8 +303,8 @@
   .experience-content {
     padding: 1rem;
     /* Improve mobile scroll performance for small screens */
-    min-height: 120px;
-    overscroll-behavior: contain;
+    min-height: 12rem;
+    overscroll-behavior: none;
   }
 
   .experience-title {

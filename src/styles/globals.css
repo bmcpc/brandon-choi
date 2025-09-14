@@ -70,16 +70,17 @@ body {
   width: 100%;
   overflow-x: hidden;
   /* Remove display: flex and place-items: center to avoid conflicts */
-  /* Improve scroll performance */
-  scroll-behavior: smooth;
+  /* Improve scroll performance - remove smooth behavior to prevent conflicts */
   -webkit-overflow-scrolling: touch;
   /* Prevent scroll jumping and improve performance */
-  overscroll-behavior: contain;
+  overscroll-behavior: none;
   scroll-padding-top: 0;
   scroll-snap-type: none;
   /* Additional scroll stability */
   scroll-margin-top: 0;
   scroll-margin-bottom: 0;
+  /* Prevent scroll jumping at bottom */
+  scroll-behavior: auto;
 }
 
 #root {
@@ -92,8 +93,10 @@ body {
   /* Prevent layout shifts during scroll */
   contain: layout style;
   /* Improve scroll performance and prevent jumping */
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  overscroll-behavior: none;
+  /* Ensure consistent height to prevent scroll jumping */
+  height: auto;
+  min-height: 100vh;
 }
 
 h1 {
@@ -129,8 +132,7 @@ button:focus-visible {
     min-height: 100svh; /* Small viewport height */
     /* Additional mobile scroll optimizations */
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
+    overscroll-behavior: none;
   }
   
   #root {
@@ -165,6 +167,17 @@ button:focus-visible {
     padding: 0.4em 0.8em;
     font-size: 0.85em;
   }
+}
+
+/* Prevent scroll jumping and improve performance */
+* {
+  scroll-behavior: auto !important;
+}
+
+/* Ensure smooth scrolling only when explicitly requested */
+html {
+  scroll-behavior: auto;
+  overscroll-behavior: none;
 }
 
 @media (prefers-color-scheme: light) {
