@@ -33,18 +33,20 @@ const InitialsIcon = ({ visible = false }) => {
     const touchDuration = Date.now() - touchStartTime.current
     const touchDistance = Math.abs(touchEndY - touchStartY.current)
     
-    // Only trigger click if it's a short, stationary touch (not a scroll gesture)
-    // Increased distance threshold to be more forgiving on mobile
-    if (touchDuration < 300 && touchDistance < 15) {
+    // Only trigger click if it's a very short, stationary touch (not a scroll gesture)
+    // Much stricter criteria to prevent accidental scroll-to-top during scrolling
+    if (touchDuration < 200 && touchDistance < 8) {
       handleClick()
     }
     
     setIsPressed(false)
   }
 
-  const handleTouchMove = () => {
+  const handleTouchMove = (e) => {
     // Cancel the press state if user is scrolling
     setIsPressed(false)
+    // Prevent the touch from interfering with page scrolling
+    e.preventDefault()
   }
 
   return (

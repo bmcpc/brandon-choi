@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './ExperienceList.css'
 import TechStackIcons from '../TechStackIcons/TechStackIcons'
 
@@ -9,9 +9,9 @@ const ExperienceList = ({ items = [] }) => {
 
   const selectedItem = items.find(item => item.id === selectedId)
 
-  const handleItemClick = (id) => {
+  const handleItemClick = useCallback((id) => {
     setSelectedId(id)
-  }
+  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {

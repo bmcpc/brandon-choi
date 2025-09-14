@@ -3,7 +3,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
   width: 100%;
@@ -11,6 +11,9 @@
   background: var(--color-bg-primary);
   padding: 6rem 0 4rem 0;
   box-sizing: border-box;
+  /* Prevent layout shifts and improve scroll performance */
+  contain: layout style;
+  will-change: auto;
 }
 
 .main-title {
@@ -47,6 +50,9 @@
   justify-content: center;
   text-shadow: 0 2px 4px var(--color-shadow-text);
   margin-bottom: 1rem;
+  /* Optimize for better scroll performance */
+  will-change: auto;
+  contain: layout style;
 }
 
 .tech-icons {

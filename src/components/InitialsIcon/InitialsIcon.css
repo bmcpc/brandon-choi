@@ -27,6 +27,9 @@
   touch-action: manipulation;
   /* Ensure the element doesn't interfere with scroll gestures */
   pointer-events: auto;
+  /* Improve scroll performance */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .initials-icon.fade-in {
