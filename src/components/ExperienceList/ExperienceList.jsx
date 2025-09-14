@@ -48,7 +48,7 @@ const ExperienceList = ({ items = [] }) => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="experience-text">
-                {item.name}
+                {item.title}
               </div>
             </div>
           ))}
