@@ -39,7 +39,7 @@ const ExperienceList = ({ items = [] }) => {
     <div className="experience-list">
       <div className="experience-container">
         {/* Top Experience Bar */}
-        <div className="experience-icon-bar">
+        <div className={`experience-icon-bar ${items.length === 1 ? 'single-item' : items.length === 2 ? 'two-items' : ''}`}>
           {items.map((item, index) => (
             <div
               key={item.id}
