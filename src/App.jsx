@@ -97,23 +97,45 @@ function App() {
     <div className="app">
       <InitialsIcon visible={titleVisible} />
       <Title title="Brandon Choi" />
-      
-      <h1 className={`main-title ${titleVisible ? 'fade-in' : ''}`}>Brandon Choi</h1>
-      
-      <TypeWriter 
-        strings={typewriterStrings} 
-        speed={100} 
-        deleteSpeed={50} 
-        delayBetweenStrings={1500}
-        startDelay={1800}
-      />
 
-      <ExperienceList items={experienceData} />
-      
-      <div className="tech-icons">
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
+      <main>
+        <section className="hero" aria-labelledby="page-title">
+          <p className={`eyebrow ${titleVisible ? 'fade-in' : ''}`}>Hello, I&apos;m</p>
+          <h1 id="page-title" className={`main-title ${titleVisible ? 'fade-in' : ''}`}>Brandon Choi</h1>
+
+          <div className="role-line">
+            <span className="role-prefix">I&apos;m a</span>
+            <TypeWriter
+              strings={typewriterStrings}
+              speed={100}
+              deleteSpeed={50}
+              delayBetweenStrings={1500}
+              startDelay={1800}
+            />
+          </div>
+          <p className="intro-copy">
+            I build thoughtful, reliable software and enjoy turning complex systems
+            into experiences that feel simple.
+          </p>
+          <a className="hero-link" href="#experience">Explore my experience <span aria-hidden="true">↓</span></a>
+        </section>
+
+        <section id="experience" className="experience-section" aria-labelledby="experience-heading">
+          <div className="section-heading">
+            <p className="section-kicker">Where I&apos;ve been</p>
+            <h2 id="experience-heading">Experience</h2>
+          </div>
+          <ExperienceList items={experienceData} />
+        </section>
+      </main>
+
+      <footer>
+        <span>Designed &amp; built with care</span>
+        <div className="tech-icons" aria-label="Built with Vite and React">
+          <img src={viteLogo} className="logo" alt="Vite" />
+          <img src={reactLogo} className="logo" alt="React" />
+        </div>
+      </footer>
     </div>
   )
 }
