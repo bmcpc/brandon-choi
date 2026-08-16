@@ -1,199 +1,35 @@
 :root {
-  font-family: var(--font-family-primary);
-  line-height: 1.5;
-  font-weight: var(--font-weight-normal);
-
-  /* Font System */
-  --font-family-primary: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-
-  /* Color System - Solarized Dark (darker variant) */
-  --color-bg-primary: #001f27; /* Darker than standard Solarized Dark #002b36 */
-  --color-bg-secondary: #002b36; /* Standard Solarized Dark Base03 */
-  --color-bg-overlay: rgba(131, 148, 150, 0.05); /* Base0 with low opacity */
-  --color-bg-overlay-hover: rgba(131, 148, 150, 0.08);
-  --color-bg-overlay-active: rgba(131, 148, 150, 0.15);
-  
-  --color-text-primary: #839496; /* Solarized Base0 */
-  --color-text-secondary: #93a1a1; /* Solarized Base1 */
-  --color-text-tertiary: #586e75; /* Solarized Base01 */
-  --color-text-muted: #657b83; /* Solarized Base00 */
-  
-  --color-accent-primary: #268bd2; /* Solarized Blue */
-  --color-accent-secondary: #2aa198; /* Solarized Cyan */
-  --color-accent-glow: #268bd2aa;
-  
-  /* Solarized accent colors for experience selection */
-  --color-seafoam-primary: #2aa198; /* Solarized Cyan */
-  --color-seafoam-secondary: #268bd2; /* Solarized Blue */
-  --color-seafoam-glow: rgba(42, 161, 152, 0.4);
-  --color-seafoam-border: rgba(42, 161, 152, 0.6);
-  --color-seafoam-shadow-light: rgba(42, 161, 152, 0.2);
-  --color-seafoam-shadow-strong: rgba(42, 161, 152, 0.8);
-  
-  --color-border-primary: rgba(131, 148, 150, 0.2); /* Base0 with opacity */
-  --color-border-secondary: rgba(131, 148, 150, 0.1);
-  
-  --color-shadow-text: rgba(131, 148, 150, 0.1);
-  --color-shadow-glow: rgba(131, 148, 150, 0.2);
-  --color-shadow-strong: rgba(131, 148, 150, 0.3);
-
+  --font-family-primary: 'DM Sans', system-ui, sans-serif;
+  --font-family-display: 'DM Serif Display', Georgia, serif;
+  --color-bg-primary: #f3f5ed;
+  --color-bg-secondary: #e6ebdc;
+  --color-bg-overlay: rgba(255,255,255,.55);
+  --color-bg-overlay-hover: rgba(255,255,255,.82);
+  --color-bg-overlay-active: #d9e3ce;
+  --color-text-primary: #28372d;
+  --color-text-secondary: #46564a;
+  --color-text-muted: #718076;
+  --color-sage: #9aaf88;
+  --color-sage-dark: #5e7759;
+  --color-seafoam-primary: #5e7759;
+  --color-seafoam-border: #9aaf88;
+  --color-seafoam-glow: rgba(130,156,113,.22);
+  --color-seafoam-shadow-light: rgba(130,156,113,.15);
+  --color-pastel-pink: #f1ddd8;
+  --color-pastel-blue: #dce9e4;
+  --color-border-primary: rgba(73,96,78,.18);
+  --color-border-secondary: rgba(73,96,78,.1);
+  --color-shadow-text: transparent;
   color: var(--color-text-secondary);
-  background-color: var(--color-bg-primary);
-
+  background: var(--color-bg-primary);
+  font-family: var(--font-family-primary);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-a {
-  font-weight: 500;
-  color: var(--color-accent-primary);
-  text-decoration: inherit;
-}
-a:hover {
-  color: var(--color-accent-secondary);
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-width: 320px;
-  min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for mobile */
-  width: 100%;
-  overflow-x: hidden;
-  /* Remove display: flex and place-items: center to avoid conflicts */
-  /* Improve scroll performance - remove smooth behavior to prevent conflicts */
-  -webkit-overflow-scrolling: touch;
-  /* Allow bounce effect but prevent jitter with selective overscroll behavior */
-  overscroll-behavior-y: auto;
-  overscroll-behavior-x: none;
-  scroll-padding-top: 0;
-  scroll-snap-type: none;
-  /* Additional scroll stability */
-  scroll-margin-top: 0;
-  scroll-margin-bottom: 0;
-  /* Prevent scroll jumping at bottom */
-  scroll-behavior: auto;
-}
-
-#root {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for mobile */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  /* Prevent layout shifts during scroll */
-  contain: layout style;
-  /* Allow vertical bounce but prevent horizontal overscroll issues */
-  overscroll-behavior-y: auto;
-  overscroll-behavior-x: none;
-  /* Ensure consistent height to prevent scroll jumping */
-  height: auto;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: var(--color-accent-primary);
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Mobile-specific improvements */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-    /* Ensure mobile browsers use the visible viewport */
-    min-height: 100svh; /* Small viewport height */
-    /* Additional mobile scroll optimizations */
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: auto;
-    overscroll-behavior-x: none;
-  }
-  
-  #root {
-    min-height: 100svh; /* Small viewport height */
-  }
-  
-  h1 {
-    font-size: 2.5em;
-  }
-  
-  button {
-    padding: 0.5em 1em;
-    font-size: 0.9em;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 13px;
-    min-height: 100svh; /* Small viewport height */
-  }
-  
-  #root {
-    min-height: 100svh; /* Small viewport height */
-  }
-  
-  h1 {
-    font-size: 2em;
-  }
-  
-  button {
-    padding: 0.4em 0.8em;
-    font-size: 0.85em;
-  }
-}
-
-/* Prevent scroll jumping and improve performance */
-* {
-  scroll-behavior: auto !important;
-}
-
-/* Ensure smooth scrolling only when explicitly requested */
-html {
-  scroll-behavior: auto;
-  overscroll-behavior-y: auto;
-  overscroll-behavior-x: none;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-text-primary);
-    background-color: var(--color-bg-primary);
-  }
-  a:hover {
-    color: var(--color-accent-primary);
-  }
-  button {
-    background-color: var(--color-bg-secondary);
-    color: var(--color-text-primary);
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at 0 20%, #e5ecdc 0, transparent 28%), var(--color-bg-primary); }
+a { color: inherit; text-decoration: none; transition: color .2s ease; }
+button { font: inherit; }
+::selection { background: #cbd9bd; color: var(--color-text-primary); }

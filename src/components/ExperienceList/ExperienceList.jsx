@@ -41,16 +41,18 @@ const ExperienceList = ({ items = [] }) => {
         {/* Top Experience Bar */}
         <div className="experience-icon-bar">
           {items.map((item, index) => (
-            <div
+            <button
+              type="button"
               key={item.id}
               className={`experience-icon-item ${selectedId === item.id ? 'active' : ''} ${iconsVisible ? 'visible' : ''}`}
               onClick={() => handleItemClick(item.id)}
               style={{ animationDelay: `${index * 0.2}s` }}
+              aria-pressed={selectedId === item.id}
             >
               <div className="experience-text">
                 {item.title}
               </div>
-            </div>
+            </button>
           ))}
         </div>
         
