@@ -43,7 +43,7 @@ const ExperienceList = ({ items = [] }) => {
           {items.map((item, index) => (
             <button
               type="button"
-              key={item.name}
+              key={index}
               className={`experience-icon-item ${selectedIndex === index ? 'active' : ''} ${iconsVisible ? 'visible' : ''}`}
               onClick={() => handleItemClick(index)}
               style={{ animationDelay: `${index * 0.2}s` }}
@@ -59,7 +59,7 @@ const ExperienceList = ({ items = [] }) => {
         {/* Bottom Description Panel */}
         <div className="experience-content">
           {selectedItem && descriptionVisible && (
-            <div key={selectedItem.name} className="experience-descriptions">
+            <div key={selectedIndex} className="experience-descriptions">
               <h3 className="experience-title">
                 {selectedItem.titleHyperlink ? (
                   <a href={selectedItem.titleHyperlink} target="_blank" rel="noopener noreferrer" className="title-hyperlink">
