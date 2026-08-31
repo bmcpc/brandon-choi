@@ -19,7 +19,6 @@ function App() {
   // Experience data from resume
   const experienceData = [
     {
-      id: 6,
       title: "Mashgin",
       name: "Mashgin",
       titleHyperlink: "https://www.mashgin.com/",
@@ -29,7 +28,6 @@ function App() {
       ]
     },
     {
-      id: 5,
       title: "Geico",
       name: "Geico",
       titleHyperlink: "https://www.geico.com/",
@@ -40,7 +38,6 @@ function App() {
       ]
     },
     {
-      id: 4,
       title: "Glidewell",
       name: "Glidewell Dental Labs",
       titleHyperlink: "https://www.glidewell.com/",
@@ -51,16 +48,6 @@ function App() {
       ]
     },
     {
-      id: 3,
-      title: "Happy Money",
-      name: "Happy Money",
-      techStack: ["java", "spring"],
-      descriptions: [
-        "Implemented API features for Java Spring Boot event-driven (Kafka) microservices responsible for communicating with 3rd party APIs to catch fraudulent loan applications"
-      ]
-    },
-    {
-      id: 2,
       title: "Amazon",
       name: "Amazon (AWS, Luna)",
       titleHyperlink: "https://aws.amazon.com/",
@@ -73,7 +60,6 @@ function App() {
       ]
     },
     {
-      id: 1,
       title: "iHerb",
       name: "iHerb",
       titleHyperlink: "https://www.iherb.com/",
