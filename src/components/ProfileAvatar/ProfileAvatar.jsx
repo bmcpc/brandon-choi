@@ -158,16 +158,17 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     advanceToNextMedia()
   }, [reducedMotion, advanceToNextMedia])
 
-  // Error recovery: always advance off a broken video layer, even under
-  // reduced motion - otherwise a failed load (404/bad codec) would leave a
-  // permanently blank/broken layer with no way to recover. Unlike the
-  // normal end-of-playback cycle, this deliberately does NOT reuse
-  // `advanceToNextMedia`'s single-item behavior: the item that just errored
-  // is a known-broken source, so calling `playFromStart` on it would just
-  // retry the identical failing source and loop forever (onError -> advance
-  // -> onError -> ...). With nothing else to fall back to in a single-item
-  // list, just leave it paused instead of retrying.
-  const handleVideoError = useCallback(() => {
+  // Error recovery, shared by both video and image layers: always advance
+  // off a broken layer, even under reduced motion - otherwise a failed load
+  // (404/bad codec/missing asset) would leave a permanently blank/broken
+  // layer with no way to recover. Unlike the normal end-of-playback cycle,
+  // this deliberately does NOT reuse `advanceToNextMedia`'s single-item
+  // behavior: the item that just errored is a known-broken source, so
+  // restarting/reloading it would just retry the identical failing source
+  // and loop forever (onError -> advance -> onError -> ...). With nothing
+  // else to fall back to in a single-item list, just leave it as-is instead
+  // of retrying.
+  const handleMediaError = useCallback(() => {
     if (media.length <= 1) return
     setActiveIndex((current) => pickNextIndex(current, media.length))
   }, [media.length])
@@ -186,10 +187,10 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
                 muted
                 playsInline
                 onEnded={isActive ? handleVideoEnded : undefined}
-                onError={isActive ? handleVideoError : undefined}
+                onError={isActive ? handleMediaError : undefined}
               />
             ) : (
-              <img src={item.src} alt={item.alt || ''} />
+              <img src={item.src} alt={item.alt || ''} onError={isActive ? handleMediaError : undefined} />
             )}
           </div>
         )
