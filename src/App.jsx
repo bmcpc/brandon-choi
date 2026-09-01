@@ -3,6 +3,7 @@ import Title from './components/Title/Title'
 import TypeWriter from './components/TypeWriter/TypeWriter'
 import ExperienceList from './components/ExperienceList/ExperienceList'
 import InitialsIcon from './components/InitialsIcon/InitialsIcon'
+import ProfileAvatar from './components/ProfileAvatar/ProfileAvatar'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import { useState, useEffect } from 'react'
@@ -87,7 +88,10 @@ function App() {
       <main>
         <section className="hero" aria-labelledby="page-title">
           <p className={`eyebrow ${titleVisible ? 'fade-in' : ''}`}>Hello, I&apos;m</p>
-          <h1 id="page-title" className={`main-title ${titleVisible ? 'fade-in' : ''}`}>Brandon Choi</h1>
+          <div className="name-row">
+            <h1 id="page-title" className={`main-title ${titleVisible ? 'fade-in' : ''}`}>Brandon Choi</h1>
+            <ProfileAvatar visible={titleVisible} />
+          </div>
 
           <div className="role-line">
             <span className="role-prefix">I&apos;m a</span>
