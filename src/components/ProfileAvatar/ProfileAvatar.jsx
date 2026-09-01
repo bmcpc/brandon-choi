@@ -1,19 +1,18 @@
 import './ProfileAvatar.css'
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { PLACEHOLDER_AVATAR_SRC } from './placeholderAvatar'
+import profilePhoto from '../../assets/profile-photo-volleyball.png'
 
 // How long an image stays on screen before crossfading to the next random item.
 const IMAGE_DISPLAY_MS = 6000
 
-// Default media list. For now this is just the locally generated placeholder
-// (no real photo exists yet, and nothing here is fetched over the network).
-// Adding a real photo/video later is just adding another entry to this array,
-// e.g. { type: 'video', src: '/media/wave.mp4', poster: '/media/wave.jpg' }.
+// Default media list. For now this is just the one real photo we have.
+// Adding another photo/video later is just adding another entry to this
+// array, e.g. { type: 'video', src: '/media/wave.mp4', poster: '/media/wave.jpg' }.
 const DEFAULT_MEDIA = [
   {
     type: 'image',
-    src: PLACEHOLDER_AVATAR_SRC,
-    alt: 'Placeholder profile avatar',
+    src: profilePhoto,
+    alt: 'Brandon Choi',
     isDefault: true,
   },
 ]
