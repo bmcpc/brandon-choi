@@ -1,0 +1,10 @@
+.profile-avatar { position: relative; flex-shrink: 0; width: 112px; height: 112px; border-radius: 50%; overflow: hidden; background: var(--color-bg-secondary); border: 3px solid var(--color-bg-primary); box-shadow: 0 12px 30px rgba(58,78,62,.2); opacity: 0; transform: translateY(14px) scale(.94); transition: opacity .8s ease, transform .6s ease; }
+.profile-avatar.fade-in { opacity: 1; transform: none; }
+.profile-avatar-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease; }
+.profile-avatar-layer.active { opacity: 1; }
+/* object-position biased toward the top: portrait media (e.g. the profile
+   photo) has its subject near the top-center of the frame, so a plain
+   centered cover crop would chop the subject in half and center on
+   whatever's below it instead. */
+.profile-avatar-layer img, .profile-avatar-layer video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+@media (max-width: 640px) { .profile-avatar { width: 76px; height: 76px; border-width: 2px; } }

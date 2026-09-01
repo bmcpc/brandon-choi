@@ -10,6 +10,7 @@ main { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
 .eyebrow, .section-kicker { color: var(--color-sage-dark); font-size: .78rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 1rem; }
 .eyebrow { opacity: 0; transform: translateY(12px); transition: .8s ease; }
 .eyebrow.fade-in { opacity: 1; transform: none; }
+.name-row { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(1rem, 3vw, 2.25rem); }
 .main-title { font-family: var(--font-family-display); color: var(--color-text-primary); font-size: clamp(4.5rem, 10vw, 8.5rem); line-height: .9; font-weight: 400; letter-spacing: -.045em; margin: 0; opacity: 0; transform: translateY(20px); transition: opacity 1s .15s ease, transform 1s .15s ease; }
 .main-title.fade-in { opacity: 1; transform: none; }
 .role-line { display: flex; align-items: center; gap: .55rem; margin-top: 2rem; font-size: clamp(1.15rem, 2vw, 1.45rem); color: var(--color-text-secondary); }
@@ -25,5 +26,5 @@ main { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
 footer { width: min(1040px, calc(100% - 48px)); margin: 0 auto; padding: 2rem 0 3rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border-primary); color: var(--color-text-muted); font-size: .85rem; }
 .tech-icons { display: flex; gap: .4rem; }.logo { width: 22px; height: 22px; opacity: .65; filter: grayscale(.3); transition: .2s; }.logo:hover { opacity: 1; transform: translateY(-2px); }
 @keyframes blink { 50% { opacity: 0; } }
-@media (max-width: 640px) { main { width: min(100% - 32px, 1080px); }.hero { min-height: 72vh; padding-top: 6rem; }.hero::before { width: 240px; height: 240px; right: -30%; }.hero::after { width: 140px; height: 140px; }.main-title { font-size: clamp(4rem, 20vw, 6rem); }.role-line { flex-wrap: wrap; }.typewriter { min-width: 100%; }.experience-section { padding: 4rem 0; }.section-heading { display: block; padding-left: 0; }.section-kicker { margin-bottom: .4rem; } footer { width: calc(100% - 32px); } }
+@media (max-width: 640px) { main { width: min(100% - 32px, 1080px); }.hero { min-height: 72vh; padding-top: 6rem; }.hero::before { width: 240px; height: 240px; right: -30%; }.hero::after { width: 140px; height: 140px; }.name-row { gap: .85rem; }.main-title { font-size: clamp(4rem, 20vw, 6rem); }.role-line { flex-wrap: wrap; }.typewriter { min-width: 100%; }.experience-section { padding: 4rem 0; }.section-heading { display: block; padding-left: 0; }.section-kicker { margin-bottom: .4rem; } footer { width: calc(100% - 32px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
