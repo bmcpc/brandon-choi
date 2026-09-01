@@ -39,15 +39,20 @@ const prefersReducedMotion = () => (
   && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 )
 
-// Resets a <video> to the start and plays it, swallowing the (expected,
-// benign) rejection some browsers throw if playback is interrupted.
-const playFromStart = (videoEl) => {
-  if (!videoEl) return
-  videoEl.currentTime = 0
+// Plays a <video>, swallowing the (expected, benign) rejection some browsers
+// throw if playback is interrupted.
+const safePlay = (videoEl) => {
   const playResult = videoEl.play()
   if (playResult && typeof playResult.catch === 'function') {
     playResult.catch(() => {})
   }
+}
+
+// Resets a <video> to the start and plays it.
+const playFromStart = (videoEl) => {
+  if (!videoEl) return
+  videoEl.currentTime = 0
+  safePlay(videoEl)
 }
 
 const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
@@ -58,8 +63,11 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
   const videoRefs = useRef({})
   // Mirrors `reducedMotion` for the restart effect below, so that effect can
   // depend only on `activeIndex`/`media` and not re-fire (and replay) every
-  // time the reduced-motion preference changes.
+  // time the reduced-motion preference changes. Assigned directly in the
+  // render body (rather than via its own useEffect) since it's only ever
+  // read imperatively later, never used to drive rendering itself.
   const reducedMotionRef = useRef(reducedMotion)
+  reducedMotionRef.current = reducedMotion
 
   // Keep reducedMotion in sync if the user flips the OS setting mid-session.
   useEffect(() => {
@@ -69,10 +77,6 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     query.addEventListener('change', handleChange)
     return () => query.removeEventListener('change', handleChange)
   }, [])
-
-  useEffect(() => {
-    reducedMotionRef.current = reducedMotion
-  }, [reducedMotion])
 
   // Auto-advance through images on a timer. Videos advance via onEnded/onError
   // instead (handled below), so they aren't cut off mid-playback.
@@ -126,20 +130,16 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     if (reducedMotion) {
       videoEl.pause()
     } else if (videoEl.paused) {
-      const playResult = videoEl.play()
-      if (playResult && typeof playResult.catch === 'function') {
-        playResult.catch(() => {})
-      }
+      safePlay(videoEl)
     }
 
     return undefined
   }, [reducedMotion, activeIndex, media])
 
-  // Shared advance handler for both a video finishing playback and a video
-  // failing to load - either way we move on to the next random item so the
-  // carousel never gets stuck on a blank/broken/frozen layer.
-  const advanceFromVideo = useCallback(() => {
-    if (reducedMotion) return
+  // Advances to the next random item (or, with only one item, restarts it -
+  // see the note below). Shared by both the normal end-of-playback cycle and
+  // error recovery.
+  const advanceToNextMedia = useCallback(() => {
     if (media.length <= 1) {
       // With only one item, `pickNextIndex` would return the same index, so
       // `setActiveIndex` would be a no-op (React bails on an unchanged
@@ -149,7 +149,21 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
       return
     }
     setActiveIndex((current) => pickNextIndex(current, media.length))
-  }, [reducedMotion, media.length, activeIndex])
+  }, [media.length, activeIndex])
+
+  // Normal auto-cycle: only advance when a video finishes if reduced motion
+  // isn't requested (matching the image timer's behavior).
+  const handleVideoEnded = useCallback(() => {
+    if (reducedMotion) return
+    advanceToNextMedia()
+  }, [reducedMotion, advanceToNextMedia])
+
+  // Error recovery: always advance off a broken video layer, even under
+  // reduced motion - otherwise a failed load (404/bad codec) would leave a
+  // permanently blank/broken layer with no way to recover.
+  const handleVideoError = useCallback(() => {
+    advanceToNextMedia()
+  }, [advanceToNextMedia])
 
   return (
     <div className={`profile-avatar ${visible ? 'fade-in' : ''}`} role="img" aria-label="Brandon Choi">
@@ -164,8 +178,8 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
                 poster={item.poster}
                 muted
                 playsInline
-                onEnded={isActive ? advanceFromVideo : undefined}
-                onError={isActive ? advanceFromVideo : undefined}
+                onEnded={isActive ? handleVideoEnded : undefined}
+                onError={isActive ? handleVideoError : undefined}
               />
             ) : (
               <img src={item.src} alt={item.alt || ''} />
