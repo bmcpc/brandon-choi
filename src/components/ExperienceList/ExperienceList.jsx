@@ -3,14 +3,14 @@ import './ExperienceList.css'
 import TechStackIcons from '../TechStackIcons/TechStackIcons'
 
 const ExperienceList = ({ items = [] }) => {
-  const [selectedId, setSelectedId] = useState(items.length > 0 ? Math.max(...items.map(item => item.id)) : null)
+  const [selectedIndex, setSelectedIndex] = useState(items.length > 0 ? 0 : null)
   const [iconsVisible, setIconsVisible] = useState(false)
   const [descriptionVisible, setDescriptionVisible] = useState(false)
 
-  const selectedItem = items.find(item => item.id === selectedId)
+  const selectedItem = selectedIndex !== null ? items[selectedIndex] : undefined
 
-  const handleItemClick = useCallback((id) => {
-    setSelectedId(id)
+  const handleItemClick = useCallback((index) => {
+    setSelectedIndex(index)
   }, [])
 
   useEffect(() => {
@@ -43,11 +43,11 @@ const ExperienceList = ({ items = [] }) => {
           {items.map((item, index) => (
             <button
               type="button"
-              key={item.id}
-              className={`experience-icon-item ${selectedId === item.id ? 'active' : ''} ${iconsVisible ? 'visible' : ''}`}
-              onClick={() => handleItemClick(item.id)}
+              key={index}
+              className={`experience-icon-item ${selectedIndex === index ? 'active' : ''} ${iconsVisible ? 'visible' : ''}`}
+              onClick={() => handleItemClick(index)}
               style={{ animationDelay: `${index * 0.2}s` }}
-              aria-pressed={selectedId === item.id}
+              aria-pressed={selectedIndex === index}
             >
               <div className="experience-text">
                 {item.title}
@@ -59,7 +59,7 @@ const ExperienceList = ({ items = [] }) => {
         {/* Bottom Description Panel */}
         <div className="experience-content">
           {selectedItem && descriptionVisible && (
-            <div key={selectedItem.id} className="experience-descriptions">
+            <div key={selectedIndex} className="experience-descriptions">
               <h3 className="experience-title">
                 {selectedItem.titleHyperlink ? (
                   <a href={selectedItem.titleHyperlink} target="_blank" rel="noopener noreferrer" className="title-hyperlink">
