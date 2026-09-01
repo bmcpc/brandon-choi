@@ -136,9 +136,10 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     return undefined
   }, [reducedMotion, activeIndex, media])
 
-  // Advances to the next random item (or, with only one item, restarts it -
-  // see the note below). Shared by both the normal end-of-playback cycle and
-  // error recovery.
+  // Advances to the next random item (or, with only one item, restarts it).
+  // Used for the normal end-of-playback cycle only: replaying a single video
+  // that just finished on its own is a legitimate "next" step, since it's
+  // known to work.
   const advanceToNextMedia = useCallback(() => {
     if (media.length <= 1) {
       // With only one item, `pickNextIndex` would return the same index, so
@@ -160,10 +161,17 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
 
   // Error recovery: always advance off a broken video layer, even under
   // reduced motion - otherwise a failed load (404/bad codec) would leave a
-  // permanently blank/broken layer with no way to recover.
+  // permanently blank/broken layer with no way to recover. Unlike the
+  // normal end-of-playback cycle, this deliberately does NOT reuse
+  // `advanceToNextMedia`'s single-item behavior: the item that just errored
+  // is a known-broken source, so calling `playFromStart` on it would just
+  // retry the identical failing source and loop forever (onError -> advance
+  // -> onError -> ...). With nothing else to fall back to in a single-item
+  // list, just leave it paused instead of retrying.
   const handleVideoError = useCallback(() => {
-    advanceToNextMedia()
-  }, [advanceToNextMedia])
+    if (media.length <= 1) return
+    setActiveIndex((current) => pickNextIndex(current, media.length))
+  }, [media.length])
 
   return (
     <div className={`profile-avatar ${visible ? 'fade-in' : ''}`} role="img" aria-label="Brandon Choi">
