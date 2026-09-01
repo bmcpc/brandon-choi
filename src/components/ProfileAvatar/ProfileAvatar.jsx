@@ -1,5 +1,5 @@
 import './ProfileAvatar.css'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { PLACEHOLDER_AVATAR_SRC } from './placeholderAvatar'
 
 // How long an image stays on screen before crossfading to the next random item.
@@ -42,6 +42,13 @@ const prefersReducedMotion = () => (
 const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
   const [activeIndex, setActiveIndex] = useState(() => getStartIndex(media))
   const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion)
+  // DOM refs for every <video> layer, keyed by index, so we can imperatively
+  // control playback (restart/pause) regardless of which item is active.
+  const videoRefs = useRef({})
+  // Mirrors `reducedMotion` for the restart effect below, so that effect can
+  // depend only on `activeIndex`/`media` and not re-fire (and replay) every
+  // time the reduced-motion preference changes.
+  const reducedMotionRef = useRef(reducedMotion)
 
   // Keep reducedMotion in sync if the user flips the OS setting mid-session.
   useEffect(() => {
@@ -52,8 +59,12 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     return () => query.removeEventListener('change', handleChange)
   }, [])
 
-  // Auto-advance through images on a timer. Videos advance via onEnded instead
-  // (handled below), so they aren't cut off mid-playback.
+  useEffect(() => {
+    reducedMotionRef.current = reducedMotion
+  }, [reducedMotion])
+
+  // Auto-advance through images on a timer. Videos advance via onEnded/onError
+  // instead (handled below), so they aren't cut off mid-playback.
   useEffect(() => {
     if (reducedMotion || media.length <= 1) return undefined
     const activeItem = media[activeIndex]
@@ -66,7 +77,45 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     return () => clearTimeout(timer)
   }, [activeIndex, media, reducedMotion])
 
-  const handleVideoEnded = useCallback(() => {
+  // Whenever a video item becomes the active one, restart it from the top.
+  // Without this, a video that already reached "ended" and gets randomly
+  // picked again would just sit on its frozen last frame, since toggling the
+  // `autoPlay` prop on an already-mounted, already-ended <video> does not
+  // restart playback.
+  useEffect(() => {
+    const activeItem = media[activeIndex]
+    if (!activeItem || activeItem.type !== 'video') return undefined
+    const videoEl = videoRefs.current[activeIndex]
+    if (!videoEl) return undefined
+
+    videoEl.currentTime = 0
+    if (!reducedMotionRef.current) {
+      const playResult = videoEl.play()
+      if (playResult && typeof playResult.catch === 'function') {
+        playResult.catch(() => {})
+      }
+    }
+
+    return () => {
+      videoEl.pause()
+    }
+  }, [activeIndex, media])
+
+  // If the user's reduced-motion preference switches on while a video is
+  // actively playing, pause it immediately rather than letting it play out -
+  // removing the `autoplay` attribute alone doesn't stop already-playing media.
+  useEffect(() => {
+    if (!reducedMotion) return undefined
+    const activeItem = media[activeIndex]
+    if (!activeItem || activeItem.type !== 'video') return undefined
+    videoRefs.current[activeIndex]?.pause()
+    return undefined
+  }, [reducedMotion, activeIndex, media])
+
+  // Shared advance handler for both a video finishing playback and a video
+  // failing to load - either way we move on to the next random item so the
+  // carousel never gets stuck on a blank/broken/frozen layer.
+  const advanceFromVideo = useCallback(() => {
     if (reducedMotion) return
     setActiveIndex((current) => pickNextIndex(current, media.length))
   }, [reducedMotion, media.length])
@@ -79,12 +128,13 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
           <div key={`${item.src}-${index}`} className={`profile-avatar-layer ${isActive ? 'active' : ''}`}>
             {item.type === 'video' ? (
               <video
+                ref={(el) => { videoRefs.current[index] = el }}
                 src={item.src}
                 poster={item.poster}
                 muted
                 playsInline
-                autoPlay={isActive && !reducedMotion}
-                onEnded={isActive ? handleVideoEnded : undefined}
+                onEnded={isActive ? advanceFromVideo : undefined}
+                onError={isActive ? advanceFromVideo : undefined}
               />
             ) : (
               <img src={item.src} alt={item.alt || ''} />
