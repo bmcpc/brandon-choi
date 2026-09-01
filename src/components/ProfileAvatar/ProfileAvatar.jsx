@@ -39,6 +39,17 @@ const prefersReducedMotion = () => (
   && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 )
 
+// Resets a <video> to the start and plays it, swallowing the (expected,
+// benign) rejection some browsers throw if playback is interrupted.
+const playFromStart = (videoEl) => {
+  if (!videoEl) return
+  videoEl.currentTime = 0
+  const playResult = videoEl.play()
+  if (playResult && typeof playResult.catch === 'function') {
+    playResult.catch(() => {})
+  }
+}
+
 const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
   const [activeIndex, setActiveIndex] = useState(() => getStartIndex(media))
   const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion)
@@ -88,12 +99,10 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     const videoEl = videoRefs.current[activeIndex]
     if (!videoEl) return undefined
 
-    videoEl.currentTime = 0
-    if (!reducedMotionRef.current) {
-      const playResult = videoEl.play()
-      if (playResult && typeof playResult.catch === 'function') {
-        playResult.catch(() => {})
-      }
+    if (reducedMotionRef.current) {
+      videoEl.currentTime = 0
+    } else {
+      playFromStart(videoEl)
     }
 
     return () => {
@@ -101,14 +110,28 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     }
   }, [activeIndex, media])
 
-  // If the user's reduced-motion preference switches on while a video is
-  // actively playing, pause it immediately rather than letting it play out -
-  // removing the `autoplay` attribute alone doesn't stop already-playing media.
+  // Keep the active video in sync with the reduced-motion preference: pause
+  // it immediately if the preference switches on mid-playback (removing the
+  // `autoplay` attribute alone doesn't stop already-playing media), and
+  // resume it if the preference later switches back off - otherwise a video
+  // paused this way would stay paused forever, since nothing else calls
+  // `.play()` on it (activeIndex hasn't changed, so the restart effect above
+  // doesn't re-fire).
   useEffect(() => {
-    if (!reducedMotion) return undefined
     const activeItem = media[activeIndex]
     if (!activeItem || activeItem.type !== 'video') return undefined
-    videoRefs.current[activeIndex]?.pause()
+    const videoEl = videoRefs.current[activeIndex]
+    if (!videoEl) return undefined
+
+    if (reducedMotion) {
+      videoEl.pause()
+    } else if (videoEl.paused) {
+      const playResult = videoEl.play()
+      if (playResult && typeof playResult.catch === 'function') {
+        playResult.catch(() => {})
+      }
+    }
+
     return undefined
   }, [reducedMotion, activeIndex, media])
 
@@ -117,15 +140,23 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
   // carousel never gets stuck on a blank/broken/frozen layer.
   const advanceFromVideo = useCallback(() => {
     if (reducedMotion) return
+    if (media.length <= 1) {
+      // With only one item, `pickNextIndex` would return the same index, so
+      // `setActiveIndex` would be a no-op (React bails on an unchanged
+      // state value) and the activeIndex-keyed restart effect would never
+      // re-fire. Restart the video directly instead.
+      playFromStart(videoRefs.current[activeIndex])
+      return
+    }
     setActiveIndex((current) => pickNextIndex(current, media.length))
-  }, [reducedMotion, media.length])
+  }, [reducedMotion, media.length, activeIndex])
 
   return (
     <div className={`profile-avatar ${visible ? 'fade-in' : ''}`} role="img" aria-label="Brandon Choi">
       {media.map((item, index) => {
         const isActive = index === activeIndex
         return (
-          <div key={`${item.src}-${index}`} className={`profile-avatar-layer ${isActive ? 'active' : ''}`}>
+          <div key={`${item.src}-${index}`} className={`profile-avatar-layer ${isActive ? 'active' : ''}`} aria-hidden="true">
             {item.type === 'video' ? (
               <video
                 ref={(el) => { videoRefs.current[index] = el }}
