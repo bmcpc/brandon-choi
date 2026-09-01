@@ -1,21 +1,22 @@
 import './ProfileAvatar.css'
 import { useState, useEffect, useCallback, useRef } from 'react'
-import profilePhoto from '../../assets/profile-photo-volleyball.png'
 
 // How long an image stays on screen before crossfading to the next random item.
 const IMAGE_DISPLAY_MS = 6000
 
-// Default media list. For now this is just the one real photo we have.
-// Adding another photo/video later is just adding another entry to this
-// array, e.g. { type: 'video', src: '/media/wave.mp4', poster: '/media/wave.jpg' }.
-const DEFAULT_MEDIA = [
-  {
-    type: 'image',
-    src: profilePhoto,
-    alt: 'Brandon Choi',
-    isDefault: true,
-  },
-]
+// No photos/videos to show yet - Brandon will add real media later. The
+// component renders nothing at all while this is empty (see the early
+// `return null` below). To bring a photo back, re-import the asset and add
+// an entry here, e.g.:
+//
+//   import profilePhoto from '../../assets/profile-photo-volleyball.png'
+//   const DEFAULT_MEDIA = [
+//     { type: 'image', src: profilePhoto, alt: 'Brandon Choi', isDefault: true },
+//   ]
+//
+// Adding a second photo/video later is just adding another entry, e.g.
+// { type: 'video', src: '/media/wave.mp4', poster: '/media/wave.jpg' }.
+const DEFAULT_MEDIA = []
 
 // Picks a random index different from `current` (when there's more than one
 // choice), so the cycler never immediately repeats the item it's already on.
@@ -172,6 +173,12 @@ const ProfileAvatar = ({ visible = false, media = DEFAULT_MEDIA }) => {
     if (media.length <= 1) return
     setActiveIndex((current) => pickNextIndex(current, media.length))
   }, [media.length])
+
+  // No media to show (e.g. the default empty list while no real photos have
+  // been added yet) - render nothing at all, not just an empty/hidden
+  // circle, so no avatar or wrapper markup shows up in the DOM. All hooks
+  // above still ran unconditionally, so this is safe with the Rules of Hooks.
+  if (media.length === 0) return null
 
   return (
     <div className={`profile-avatar ${visible ? 'fade-in' : ''}`} role="img" aria-label="Brandon Choi">
